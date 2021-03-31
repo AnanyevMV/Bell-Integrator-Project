@@ -1,4 +1,4 @@
-package ru.bellintegrator.service;
+package ru.bellintegrator.service.country;
 
 import ru.bellintegrator.entity.Country;
 

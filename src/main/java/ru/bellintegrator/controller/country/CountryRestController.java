@@ -1,12 +1,11 @@
-package ru.bellintegrator.controller;
+package ru.bellintegrator.controller.country;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.bellintegrator.entity.Country;
-import ru.bellintegrator.service.CountryService;
+import ru.bellintegrator.service.country.CountryService;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package ru.bellintegrator.dao;
+package ru.bellintegrator.dao.country;
 
 import ru.bellintegrator.entity.Country;
 

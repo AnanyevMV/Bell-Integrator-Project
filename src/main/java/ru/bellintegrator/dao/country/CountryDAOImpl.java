@@ -1,4 +1,4 @@
-package ru.bellintegrator.dao;
+package ru.bellintegrator.dao.country;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,7 +20,7 @@ public class CountryDAOImpl implements CountryDAO {
 
     @Override
     public List<Country> getCountries() {
-        TypedQuery<Country> query = entityManager.createQuery("SELECT c FROM Country c", Country.class);
+        TypedQuery<Country> query = entityManager.createQuery("select c from Country c", Country.class);
         return query.getResultList();
     }
 }

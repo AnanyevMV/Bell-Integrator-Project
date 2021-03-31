@@ -1,8 +1,8 @@
-package ru.bellintegrator.service;
+package ru.bellintegrator.service.country;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.bellintegrator.dao.CountryDAO;
+import ru.bellintegrator.dao.country.CountryDAO;
 import ru.bellintegrator.entity.Country;
 
 import java.util.List;
