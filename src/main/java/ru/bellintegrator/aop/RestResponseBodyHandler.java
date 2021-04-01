@@ -13,7 +13,7 @@ import ru.bellintegrator.dto.DataDTO;
 public class RestResponseBodyHandler implements ResponseBodyAdvice<Object> {
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
-        return true;
+        return !(methodParameter.getContainingClass().equals(RestExceptionHandler.class));
     }
 
     @Override
