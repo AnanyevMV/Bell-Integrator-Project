@@ -28,11 +28,9 @@ public class CountryRestController {
 
     @GetMapping(value = "/countries")
     public List<Country> getCountries() {
-
-        if (true) {
-            throw new RuntimeException();
-        }
-
+    //        if (true) {
+    //            throw new RuntimeException();
+    //        }
         return countryService.getCountries();
     }
 }

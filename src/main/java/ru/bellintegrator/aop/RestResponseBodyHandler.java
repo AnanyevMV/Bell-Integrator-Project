@@ -8,18 +8,22 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import ru.bellintegrator.dto.DataDTO;
+import ru.bellintegrator.dto.ErrorDTO;
 
 @RestControllerAdvice
 public class RestResponseBodyHandler implements ResponseBodyAdvice<Object> {
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
-        return !(methodParameter.getContainingClass().equals(RestExceptionHandler.class));
+        return true;
     }
 
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter methodParameter, MediaType mediaType,
     Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest,
     ServerHttpResponse serverHttpResponse) {
+        if (body instanceof ErrorDTO) {
+            return body;
+        }
         DataDTO dataDTO = new DataDTO(body);
         return dataDTO;
     }
