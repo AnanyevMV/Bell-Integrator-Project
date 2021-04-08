@@ -2,6 +2,7 @@ package ru.bellintegrator.service.country;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.dao.country.CountryDAO;
 import ru.bellintegrator.dto.CountryDTO;
 import ru.bellintegrator.dto.mapper.CountryMapper;
@@ -23,6 +24,7 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
+    @Transactional
     public List<CountryDTO> getCountries() {
         List<Country> countries = countryDAO.getCountries();
         return countryMapper.toDTOList(countries);

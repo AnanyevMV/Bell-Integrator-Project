@@ -2,6 +2,7 @@ package ru.bellintegrator.service.documenttype;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.dao.documenttype.DocumentTypeDAO;
 import ru.bellintegrator.dto.DocumentTypeDTO;
 import ru.bellintegrator.dto.mapper.DocumentTypeMapper;
@@ -23,6 +24,7 @@ public class DocumentTypeServiceImpl implements DocumentTypeService {
     }
 
     @Override
+    @Transactional
     public List<DocumentTypeDTO> getDocumentTypes() {
         List<DocumentType> documentTypes = documentTypeDAO.getDocumentTypes();
         return documentTypeMapper.toDTOList(documentTypes);

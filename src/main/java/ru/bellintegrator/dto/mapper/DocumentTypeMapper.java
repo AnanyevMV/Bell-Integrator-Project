@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class DocumentTypeMapper {
+public class DocumentTypeMapper implements Mapper<DocumentType, DocumentTypeDTO> {
 
     private final ModelMapper modelMapper;
 
@@ -19,19 +19,23 @@ public class DocumentTypeMapper {
         this.modelMapper = modelMapper;
     }
 
+    @Override
     public DocumentType toEntity(DocumentTypeDTO documentTypeDTO) {
         return modelMapper.map(documentTypeDTO, DocumentType.class);
     }
 
+    @Override
     public DocumentTypeDTO toDTO(DocumentType documentType) {
         return modelMapper.map(documentType, DocumentTypeDTO.class);
     }
 
+    @Override
     public List<DocumentType> toEntityList(List<DocumentTypeDTO> documentTypeDTOList) {
         return documentTypeDTOList.stream().
                 map(documentTypeDTO -> modelMapper.map(documentTypeDTO, DocumentType.class)).collect(Collectors.toList());
     }
 
+    @Override
     public List<DocumentTypeDTO> toDTOList(List<DocumentType> documentTypeList) {
         return documentTypeList.stream().
                 map(documentType -> modelMapper.map(documentType, DocumentTypeDTO.class)).collect(Collectors.toList());
