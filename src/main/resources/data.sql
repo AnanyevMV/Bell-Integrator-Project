@@ -19,16 +19,13 @@ INSERT INTO document_type (doc_code, doc_name) VALUES ('03', 'Свидетель
 INSERT INTO document_type (doc_code, doc_name) VALUES ('07', 'Военный билет');
 INSERT INTO document_type (doc_code, doc_name) VALUES ('08', 'Временное удостоверение, выданное взамен военного билета');
 INSERT INTO document_type (doc_code, doc_name) VALUES ('10', 'Паспорт иностранного гражданина');
-INSERT INTO document_type (doc_code, doc_name) VALUES ('11', 'Свидетельство о рассмотрении ходатайства о признании лица
-беженцем на территории Российской Федерации по существу');
+INSERT INTO document_type (doc_code, doc_name) VALUES ('11', 'Свидетельство о рассмотрении ходатайства о признании лица беженцем на территории Российской Федерации по существу');
 INSERT INTO document_type (doc_code, doc_name) VALUES ('12', 'Вид на жительство в Российской Федерации');
 INSERT INTO document_type (doc_code, doc_name) VALUES ('13', 'Удостоверение беженца');
 INSERT INTO document_type (doc_code, doc_name) VALUES ('15', 'Разрешение на временное проживание в Российской Федерации');
-INSERT INTO document_type (doc_code, doc_name) VALUES ('18', 'Свидетельство о предоставлении временного убежища на территории
-Российской Федерации');
+INSERT INTO document_type (doc_code, doc_name) VALUES ('18', 'Свидетельство о предоставлении временного убежища на территории Российской Федерации');
 INSERT INTO document_type (doc_code, doc_name) VALUES ('21', 'Паспорт гражданина Российской Федерации');
-INSERT INTO document_type (doc_code, doc_name) VALUES ('23', 'Свидетельство о рождении, выданное уполномоченным органом
-иностранного государства');
+INSERT INTO document_type (doc_code, doc_name) VALUES ('23', 'Свидетельство о рождении, выданное уполномоченным органом иностранного государства');
 INSERT INTO document_type (doc_code, doc_name) VALUES ('24', 'Удостоверение личности военнослужащего Российской Федерации');
 INSERT INTO document_type (doc_code, doc_name) VALUES ('91', 'Иные документы');
 
