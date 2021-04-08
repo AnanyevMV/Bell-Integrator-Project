@@ -28,7 +28,7 @@ public class RestResponseBodyHandler implements ResponseBodyAdvice<Object> {
 
         // Если метод void и не произошло ошибки, то возвращаем {"result" : "success"}
         if (methodParameter.getParameterType() == void.class) {
-            return new SuccessDTO();
+            return new DataDTO(new SuccessDTO());
         }
 
         DataDTO dataDTO = new DataDTO(body);
