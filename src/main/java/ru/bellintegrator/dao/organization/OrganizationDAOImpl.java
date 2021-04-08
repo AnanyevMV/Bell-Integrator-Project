@@ -36,12 +36,14 @@ public class OrganizationDAOImpl implements OrganizationDAO {
     }
 
     @Override
-    public void updateOrganization(OrganizationDTO organizationDTO) {
-
+    public void updateOrganization(Organization organization) {
+        // Проверка, есть ли организация с таким id
+        this.getOrganization(organization.getId());
+        entityManager.merge(organization);
     }
 
     @Override
-    public void saveOrganization(OrganizationDTO organizationDTO) {
-
+    public void saveOrganization(Organization organization) {
+        entityManager.persist(organization);
     }
 }

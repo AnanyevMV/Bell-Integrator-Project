@@ -1,6 +1,5 @@
 package ru.bellintegrator.service.organization;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +12,6 @@ import java.util.List;
 
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
-
 
     private final OrganizationDAO organizationDAO;
 
@@ -37,5 +35,20 @@ public class OrganizationServiceImpl implements OrganizationService {
     public OrganizationDTO getOrganization(Long id) {
         Organization organization = organizationDAO.getOrganization(id);
         return organizationMapper.toDTO(organization);
+    }
+
+    @Override
+    @Transactional
+    public void saveOrganization(OrganizationDTO organizationDTO) {
+        Organization organization = organizationMapper.toEntity(organizationDTO);
+        organization.setId(0L);
+        organizationDAO.saveOrganization(organization);
+    }
+
+    @Override
+    @Transactional
+    public void updateOrganization(OrganizationDTO organizationDTO) {
+        Organization organization = organizationMapper.toEntity(organizationDTO);
+        organizationDAO.updateOrganization(organization);
     }
 }

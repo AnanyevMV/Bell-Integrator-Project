@@ -10,7 +10,7 @@ public interface OrganizationDAO {
 
     public Organization getOrganization(Long id);
 
-    public void updateOrganization(OrganizationDTO organizationDTO);
+    public void updateOrganization(Organization organization);
 
-    public void saveOrganization(OrganizationDTO organizationDTO);
+    public void saveOrganization(Organization organization);
 }

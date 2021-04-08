@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import ru.bellintegrator.dto.DataDTO;
 import ru.bellintegrator.dto.ErrorDTO;
+import ru.bellintegrator.dto.SuccessDTO;
 
 @RestControllerAdvice
 public class RestResponseBodyHandler implements ResponseBodyAdvice<Object> {
@@ -24,6 +25,12 @@ public class RestResponseBodyHandler implements ResponseBodyAdvice<Object> {
         if (body instanceof ErrorDTO) {
             return body;
         }
+
+        // Если метод void и не произошло ошибки, то возвращаем {"result" : "success"}
+        if (methodParameter.getParameterType() == void.class) {
+            return new SuccessDTO();
+        }
+
         DataDTO dataDTO = new DataDTO(body);
         return dataDTO;
     }

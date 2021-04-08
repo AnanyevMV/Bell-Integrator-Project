@@ -1,10 +1,7 @@
 package ru.bellintegrator.controller.organization;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.bellintegrator.dto.OrganizationDTO;
 import ru.bellintegrator.service.organization.OrganizationService;
 
@@ -30,4 +27,15 @@ public class OrganizationRestController {
     public OrganizationDTO getOrganization(@PathVariable("id") Long id) {
         return organizationService.getOrganization(id);
     }
+
+    @PostMapping("/organization/save")
+    public void saveOrganization(@RequestBody OrganizationDTO organizationDTO) {
+
+    }
+
+    @PutMapping("/organization/save")
+    public void updateOrganization(@RequestBody OrganizationDTO organizationDTO) {
+
+    }
+
 }
