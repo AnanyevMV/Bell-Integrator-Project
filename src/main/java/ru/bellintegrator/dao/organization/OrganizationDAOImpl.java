@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.bellintegrator.entity.Organization;
 
+import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -39,11 +40,17 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 
     @Override
     public void updateOrganization(Organization organization) {
-        // Проверка, есть ли организация с таким id
-        Organization org = this.getOrganization(organization.getId());
-        organization.setVersion(org.getVersion());
-        entityManager.merge(organization);
+        // Получаем persisted объект организации или ошибку
+        Organization persistedOrg = this.getOrganization(organization.getId());
+        persistedOrg.setName(organization.getName());
+        persistedOrg.setFullName(organization.getFullName());
+        persistedOrg.setInn(organization.getInn());
+        persistedOrg.setKpp(organization.getKpp());
+        persistedOrg.setAddress(organization.getAddress());
+        persistedOrg.setPhone(organization.getPhone());
+        persistedOrg.setIsActive(organization.getIsActive());
     }
+
 
     @Override
     public void saveOrganization(Organization organization) {
