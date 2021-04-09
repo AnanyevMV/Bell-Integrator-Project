@@ -2,7 +2,6 @@ package ru.bellintegrator.dao.organization;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ru.bellintegrator.dto.OrganizationDTO;
 import ru.bellintegrator.entity.Organization;
 
 import javax.persistence.EntityManager;
@@ -41,7 +40,8 @@ public class OrganizationDAOImpl implements OrganizationDAO {
     @Override
     public void updateOrganization(Organization organization) {
         // Проверка, есть ли организация с таким id
-        this.getOrganization(organization.getId());
+        Organization org = this.getOrganization(organization.getId());
+        organization.setVersion(org.getVersion());
         entityManager.merge(organization);
     }
 
