@@ -1,6 +1,7 @@
 package ru.bellintegrator.dto;
 
 public class OrganizationDTO {
+
     private Long id;
     private String name;
     private String fullName;
@@ -8,7 +9,7 @@ public class OrganizationDTO {
     private String kpp;
     private String address;
     private String phone;
-    private boolean isActive;
+    private String isActive;
 
     public OrganizationDTO() {
 
@@ -70,11 +71,25 @@ public class OrganizationDTO {
         this.phone = phone;
     }
 
-    public boolean isActive() {
+    public String getIsActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setIsActive(String isActive) {
+        this.isActive = isActive;
+    }
+
+    @Override
+    public String toString() {
+        return "OrganizationDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", inn='" + inn + '\'' +
+                ", kpp='" + kpp + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", isActive='" + isActive + '\'' +
+                '}';
     }
 }

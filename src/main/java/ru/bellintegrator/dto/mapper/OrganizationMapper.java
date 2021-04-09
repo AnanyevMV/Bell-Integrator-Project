@@ -1,11 +1,13 @@
 package ru.bellintegrator.dto.mapper;
 
+import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.bellintegrator.dto.BadInputException;
 import ru.bellintegrator.dto.OrganizationDTO;
 import ru.bellintegrator.entity.Organization;
-
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +19,33 @@ public class OrganizationMapper implements Mapper<Organization, OrganizationDTO>
     @Autowired
     public OrganizationMapper(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
+    }
+
+    @PostConstruct
+    public void mapperSettings() {
+        Converter<String, Integer> strToIntConverter = mappingContext -> {
+            if (mappingContext.getSource().equals("false")) {
+                return 0;
+            } else if (mappingContext.getSource().equals("true")) {
+                return 1;
+            } else {
+                throw new BadInputException("Field 'isActive' should be 'true' or 'false'");
+            }
+        };
+
+        Converter<Integer, String> intToStrConverter = mappingContext -> {
+            if (mappingContext.getSource() == 1) {
+                return "true";
+            } else {
+                return "false";
+            }
+        };
+
+        modelMapper.typeMap(OrganizationDTO.class, Organization.class).addMappings(mapper ->
+        mapper.using(strToIntConverter).map(OrganizationDTO::getIsActive, Organization::setIsActive));
+
+        modelMapper.typeMap(Organization.class, OrganizationDTO.class).addMappings(mapper ->
+        mapper.using(intToStrConverter).map(Organization::getIsActive, OrganizationDTO::setIsActive));
     }
 
     @Override

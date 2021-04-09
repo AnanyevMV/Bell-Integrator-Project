@@ -41,7 +41,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Transactional
     public void saveOrganization(OrganizationDTO organizationDTO) {
         Organization organization = organizationMapper.toEntity(organizationDTO);
-        organization.setId(0L);
+        organization.setId(null);
         organizationDAO.saveOrganization(organization);
     }
 

@@ -30,12 +30,13 @@ public class OrganizationRestController {
 
     @PostMapping("/organization/save")
     public void saveOrganization(@RequestBody OrganizationDTO organizationDTO) {
-
+        organizationService.saveOrganization(organizationDTO);
     }
 
-    @PutMapping("/organization/save")
+    @PutMapping("/organization/update")
     public void updateOrganization(@RequestBody OrganizationDTO organizationDTO) {
-
+        System.out.println(organizationDTO);
+        organizationService.updateOrganization(organizationDTO);
     }
 
 }

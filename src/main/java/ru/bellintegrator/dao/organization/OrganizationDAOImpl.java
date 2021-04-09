@@ -28,6 +28,9 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 
     @Override
     public Organization getOrganization(Long id) {
+        if (id == null) {
+            throw new OrganizationNotFoundException("Не задано id организации");
+        }
         Organization organization = entityManager.find(Organization.class, id);
         if (organization == null) {
             throw new OrganizationNotFoundException("Нет организации с таким id " + id);

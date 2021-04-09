@@ -39,7 +39,7 @@ public class Organization {
     private String phone;
 
     @Column(name = "is_active")
-    private int isActive = 1;
+    private Integer isActive = 1;
 
     public Organization() {
 
@@ -118,11 +118,11 @@ public class Organization {
         this.phone = phone;
     }
 
-    public int getIsActive() {
+    public Integer getIsActive() {
         return isActive;
     }
 
-    public void setIsActive(int isActive) {
+    public void setIsActive(Integer isActive) {
         this.isActive = isActive;
     }
 
