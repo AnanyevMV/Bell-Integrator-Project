@@ -22,9 +22,6 @@ public class Office {
     @Column(name = "phone", nullable = true, length = 255)
     private String phone;
 
-//    @Column(name = "org_id")
-//    private Long orgId;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="org_id")
     private Organization organization;
@@ -40,7 +37,6 @@ public class Office {
         this.name = name;
         this.address = address;
         this.phone = phone;
-//        this.orgId = orgId;
     }
 
     public Long getId() {

@@ -14,19 +14,19 @@ public class RestExceptionHandler{
     @ExceptionHandler
     public ResponseEntity<ErrorDTO> handleGeneralException(Exception exception) {
         ErrorDTO errorDTO = new ErrorDTO("BAD REQUEST");
-        return new ResponseEntity<>(errorDTO,HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDTO, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
     public ResponseEntity<ErrorDTO> handleOrganizationNotFoundException(OrganizationNotFoundException exc) {
         ErrorDTO errorDTO = new ErrorDTO(exc.getMessage());
-        return new ResponseEntity<>(errorDTO,HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler
     public ResponseEntity<ErrorDTO> handleOfficeNotFoundException(OfficeNotFoundException exc) {
         ErrorDTO errorDTO = new ErrorDTO(exc.getMessage());
-        return new ResponseEntity<>(errorDTO,HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler

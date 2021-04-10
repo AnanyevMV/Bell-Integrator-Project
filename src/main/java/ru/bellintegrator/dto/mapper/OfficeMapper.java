@@ -1,14 +1,10 @@
 package ru.bellintegrator.dto.mapper;
 
-import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.bellintegrator.dto.BadInputException;
 import ru.bellintegrator.dto.OfficeDTO;
-import ru.bellintegrator.dto.OrganizationDTO;
 import ru.bellintegrator.entity.Office;
-import ru.bellintegrator.entity.Organization;
 
 import javax.annotation.PostConstruct;
 import java.util.List;

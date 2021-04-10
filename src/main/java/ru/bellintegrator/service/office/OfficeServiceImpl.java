@@ -40,14 +40,13 @@ public class OfficeServiceImpl implements OfficeService {
     @Override
     @Transactional
     public void updateOffice(OfficeDTO officeDTO) {
-        Office office = officeMapper.toEntity(officeDTO);
-        officeDAO.updateOffice(office);
+        officeDAO.updateOffice(officeDTO);
     }
 
     @Override
     @Transactional
     public void saveOffice(OfficeDTO officeDTO) {
-        Office office = officeMapper.toEntity(officeDTO);
-        officeDAO.saveOffice(office);
+        officeDTO.setId(null);
+        officeDAO.saveOffice(officeDTO);
     }
 }

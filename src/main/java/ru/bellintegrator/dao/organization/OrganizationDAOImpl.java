@@ -6,6 +6,7 @@ import ru.bellintegrator.entity.Organization;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public class OrganizationDAOImpl implements OrganizationDAO {
@@ -26,11 +27,11 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 
     @Override
     public Organization getOrganization(Long id) {
-        if (id == null) {
+        if (Objects.isNull(id)) {
             throw new OrganizationNotFoundException("Не задано id организации");
         }
         Organization organization = entityManager.find(Organization.class, id);
-        if (organization == null) {
+        if (Objects.isNull(organization)) {
             throw new OrganizationNotFoundException("Нет организации с таким id " + id);
         }
         return organization;
@@ -40,13 +41,14 @@ public class OrganizationDAOImpl implements OrganizationDAO {
     public void updateOrganization(Organization organization) {
         // Получаем persisted объект организации или ошибку
         Organization persistedOrg = this.getOrganization(organization.getId());
-        persistedOrg.setName(organization.getName());
-        persistedOrg.setFullName(organization.getFullName());
-        persistedOrg.setInn(organization.getInn());
-        persistedOrg.setKpp(organization.getKpp());
-        persistedOrg.setAddress(organization.getAddress());
-        persistedOrg.setPhone(organization.getPhone());
-        persistedOrg.setIsActive(organization.getIsActive());
+
+        if (Objects.nonNull(organization.getName())) { persistedOrg.setName(organization.getName()); }
+        if (Objects.nonNull(organization.getFullName())) { persistedOrg.setName(organization.getFullName()); }
+        if (Objects.nonNull(organization.getInn())) { persistedOrg.setInn(organization.getInn()); }
+        if (Objects.nonNull(organization.getKpp())) { persistedOrg.setKpp(organization.getKpp()); }
+        if (Objects.nonNull(organization.getAddress())) { persistedOrg.setAddress(organization.getAddress()); }
+        if (Objects.nonNull(organization.getPhone())) { persistedOrg.setPhone(organization.getPhone()); }
+        if (Objects.nonNull(organization.getIsActive())) { persistedOrg.setIsActive(organization.getIsActive()); }
     }
 
 
