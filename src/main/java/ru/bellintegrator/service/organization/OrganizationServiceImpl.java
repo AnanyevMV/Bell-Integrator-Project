@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.dao.organization.OrganizationDAO;
 import ru.bellintegrator.dto.OrganizationDTO;
+import ru.bellintegrator.dto.mapper.Mapper;
 import ru.bellintegrator.dto.mapper.OrganizationMapper;
 import ru.bellintegrator.entity.Organization;
 
@@ -40,6 +41,9 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     @Transactional
     public void saveOrganization(OrganizationDTO organizationDTO) {
+        // ModelMapper использует прокси и таким образом перехватывает exception и нужное сообщение и возвращает свой
+        // exception. Поэтому вручную вызываем метод проверки
+        Mapper.throwExceptionIfNotTrueOrFalse(organizationDTO.getIsActive());
         Organization organization = organizationMapper.toEntity(organizationDTO);
         organization.setId(null);
         organizationDAO.saveOrganization(organization);
@@ -48,6 +52,9 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     @Transactional
     public void updateOrganization(OrganizationDTO organizationDTO) {
+        // ModelMapper использует прокси и таким образом перехватывает exception и нужное сообщение и возвращает свой
+        // exception. Поэтому вручную вызываем метод проверки
+        Mapper.throwExceptionIfNotTrueOrFalse(organizationDTO.getIsActive());
         Organization organization = organizationMapper.toEntity(organizationDTO);
         organizationDAO.updateOrganization(organization);
     }
