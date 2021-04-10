@@ -3,8 +3,6 @@ package ru.bellintegrator.dao.organization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.bellintegrator.entity.Organization;
-
-import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;

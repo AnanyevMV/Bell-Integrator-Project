@@ -22,21 +22,25 @@ public class Office {
     @Column(name = "phone", nullable = true, length = 255)
     private String phone;
 
-    @Column(name = "org_id")
-    private long orgId;
+//    @Column(name = "org_id")
+//    private Long orgId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="org_id")
+    private Organization organization;
 
     @Column(name = "is_active")
-    private int isActive = 1;
+    private Integer isActive = 1;
 
     public Office() {
 
     }
 
-    public Office(String name, String address, String phone, long orgId) {
+    public Office(String name, String address, String phone) {
         this.name = name;
         this.address = address;
         this.phone = phone;
-        this.orgId = orgId;
+//        this.orgId = orgId;
     }
 
     public Long getId() {
@@ -79,20 +83,28 @@ public class Office {
         this.phone = phone;
     }
 
-    public long getOrgId() {
-        return orgId;
-    }
+//    public Long getOrgId() {
+//        return orgId;
+//    }
+//
+//    public void setOrgId(Long orgId) {
+//        this.orgId = orgId;
+//    }
 
-    public void setOrgId(long orgId) {
-        this.orgId = orgId;
-    }
-
-    public int getIsActive() {
+    public Integer getIsActive() {
         return isActive;
     }
 
-    public void setIsActive(int isActive) {
+    public void setIsActive(Integer isActive) {
         this.isActive = isActive;
+    }
+
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
     }
 
     @Override
@@ -103,7 +115,7 @@ public class Office {
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
-                ", orgId=" + orgId +
+                ", organization=" + organization +
                 ", isActive=" + isActive +
                 '}';
     }
