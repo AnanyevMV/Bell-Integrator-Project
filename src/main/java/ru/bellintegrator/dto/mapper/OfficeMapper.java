@@ -21,7 +21,7 @@ public class OfficeMapper implements Mapper<Office, OfficeDTO> {
     }
 
     @PostConstruct
-    public void mapperSettings() {
+    private void mapperSettings() {
         modelMapper.typeMap(OfficeDTO.class, Office.class).addMappings(mapper ->
         mapper.using(Mapper.booleanStrToIntegerConverter()).map(OfficeDTO::getIsActive, Office::setIsActive));
 

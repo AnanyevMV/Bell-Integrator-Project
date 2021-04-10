@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import ru.bellintegrator.dao.organization.OrganizationNotFoundException;
 import ru.bellintegrator.dto.BadInputException;
 import ru.bellintegrator.dto.OfficeDTO;
+import ru.bellintegrator.dto.mapper.Mapper;
 import ru.bellintegrator.dto.mapper.OfficeMapper;
 import ru.bellintegrator.entity.Office;
 import ru.bellintegrator.entity.Organization;
@@ -47,6 +48,7 @@ public class  OfficeDAOImpl implements OfficeDAO {
 
     @Override
     public void updateOffice(OfficeDTO officeDTO) {
+
         // Получаем persisted объект офиса или ошибку
         Office office = this.getOffice(officeDTO.getId());
 
@@ -58,10 +60,12 @@ public class  OfficeDAOImpl implements OfficeDAO {
             }
             office.setOrganization(newOrganization);
         }
+        // Если где-то поле не указано (null), то пропускаем изменение, а не устанавливаем null
         if (Objects.nonNull(officeDTO.getName())) { office.setName(officeDTO.getName()); }
         if (Objects.nonNull(officeDTO.getAddress())) { office.setAddress(officeDTO.getAddress()); }
         if (Objects.nonNull(officeDTO.getPhone())) { office.setPhone(officeDTO.getPhone()); }
 
+        // Меняем поле типа String ("false"/"true") на (0/1)
         if (Objects.nonNull(officeDTO.getIsActive())) {
             if (officeDTO.getIsActive().equals("false")) {
                 office.setIsActive(0);
@@ -75,6 +79,10 @@ public class  OfficeDAOImpl implements OfficeDAO {
 
     @Override
     public void saveOffice(OfficeDTO officeDTO) {
+        // ModelMapper использует прокси и таким образом перехватывает exception и нужное сообщение и возвращает свой
+        // exception. Поэтому вручную вызываем метод проверки
+        Mapper.throwExceptionIfNotTrueOrFalse(officeDTO.getIsActive());
+
         Organization organization = entityManager.find(Organization.class, officeDTO.getOrgId());
         if (Objects.isNull(organization)) {
             throw new OrganizationNotFoundException("Нет организации с таким id " + officeDTO.getOrgId());

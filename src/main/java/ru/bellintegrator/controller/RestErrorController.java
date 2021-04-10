@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RestErrorController implements ErrorController {
     @RequestMapping("/error")
     public void handleError() {
+        // Наш exception handler просто перехватит exception и вернёт BAD REQUEST
         throw new RuntimeException();
     }
 

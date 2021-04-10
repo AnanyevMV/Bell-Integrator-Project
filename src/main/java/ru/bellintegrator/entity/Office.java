@@ -22,7 +22,7 @@ public class Office {
     @Column(name = "phone", nullable = true, length = 255)
     private String phone;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name="org_id")
     private Organization organization;
 

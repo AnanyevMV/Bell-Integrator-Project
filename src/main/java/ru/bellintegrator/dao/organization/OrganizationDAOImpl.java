@@ -42,6 +42,7 @@ public class OrganizationDAOImpl implements OrganizationDAO {
         // Получаем persisted объект организации или ошибку
         Organization persistedOrg = this.getOrganization(organization.getId());
 
+        // Если где-то поле не указано (null), то пропускаем изменение, а не устанавливаем null
         if (Objects.nonNull(organization.getName())) { persistedOrg.setName(organization.getName()); }
         if (Objects.nonNull(organization.getFullName())) { persistedOrg.setName(organization.getFullName()); }
         if (Objects.nonNull(organization.getInn())) { persistedOrg.setInn(organization.getInn()); }

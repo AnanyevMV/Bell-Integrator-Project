@@ -20,7 +20,7 @@ public class OrganizationMapper implements Mapper<Organization, OrganizationDTO>
     }
 
     @PostConstruct
-    public void mapperSettings() {
+    private void mapperSettings() {
         modelMapper.typeMap(OrganizationDTO.class, Organization.class).addMappings(mapper ->
         mapper.using(Mapper.booleanStrToIntegerConverter()).map(OrganizationDTO::getIsActive, Organization::setIsActive));
 
