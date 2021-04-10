@@ -26,7 +26,15 @@ public class OfficeDAOImpl implements OfficeDAO {
 
     @Override
     public Office getOffice(Long id) {
-        return null;
+        if (id == null) {
+            throw new OfficeNotFoundException("Не задано id офиса");
+        }
+
+        Office office = entityManager.find(Office.class, id);
+        if (office == null) {
+            throw new OfficeNotFoundException("Нет офиса с таким id " + id);
+        }
+        return office;
     }
 
     @Override
