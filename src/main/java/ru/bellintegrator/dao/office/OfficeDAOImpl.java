@@ -48,7 +48,6 @@ public class  OfficeDAOImpl implements OfficeDAO {
 
     @Override
     public void updateOffice(OfficeDTO officeDTO) {
-
         // Получаем persisted объект офиса или ошибку
         Office office = this.getOffice(officeDTO.getId());
 
@@ -82,7 +81,9 @@ public class  OfficeDAOImpl implements OfficeDAO {
         // ModelMapper использует прокси и таким образом перехватывает exception и нужное сообщение и возвращает свой
         // exception. Поэтому вручную вызываем метод проверки
         Mapper.throwExceptionIfNotTrueOrFalse(officeDTO.getIsActive());
-
+        if (Objects.isNull(officeDTO.getOrgId())) {
+            throw new OrganizationNotFoundException("Не указано id организации");
+        }
         Organization organization = entityManager.find(Organization.class, officeDTO.getOrgId());
         if (Objects.isNull(organization)) {
             throw new OrganizationNotFoundException("Нет организации с таким id " + officeDTO.getOrgId());

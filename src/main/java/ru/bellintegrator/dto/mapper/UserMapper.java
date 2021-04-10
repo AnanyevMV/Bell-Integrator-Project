@@ -3,7 +3,9 @@ package ru.bellintegrator.dto.mapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.bellintegrator.dto.OfficeDTO;
 import ru.bellintegrator.dto.UserDTO;
+import ru.bellintegrator.entity.Office;
 import ru.bellintegrator.entity.User;
 
 import javax.annotation.PostConstruct;
@@ -22,7 +24,16 @@ public class UserMapper implements Mapper<User, UserDTO> {
 
     @PostConstruct
     private void mapperSettings() {
+        modelMapper.typeMap(UserDTO.class, User.class).addMappings(mapper ->
+                mapper.using(Mapper.booleanStrToIntegerConverter()).map(UserDTO::getIsIdentified, User::setIsIdentified));
 
+        modelMapper.typeMap(User.class, UserDTO.class).addMappings(mapper ->{
+            mapper.using(Mapper.booleanIntegerToStrConverter()).map(User::getIsIdentified, UserDTO::setIsIdentified);
+            mapper.map(m->m.getOffice().getId(), UserDTO::setOfficeId);
+            mapper.map(m->m.getDocument().getDocCode(), UserDTO::setDocCode);
+            mapper.map(m->m.getDocument().getDocNumber(), UserDTO::setDocNumber);
+            mapper.map(m->m.getDocument().getDocDate(), UserDTO::setDocDate);
+        });
     }
 
     @Override

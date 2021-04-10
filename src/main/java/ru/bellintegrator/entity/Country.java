@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class Country {
     @Id
     @Column(name = "code", nullable = false, unique = true)
-    private Long code;
+    private String code;
 
     @Column(name = "name", nullable = false, unique = true)
     private String name;
@@ -19,7 +19,7 @@ public class Country {
 
     }
 
-    public Long getCode() {
+    public String getCode() {
         return code;
     }
 

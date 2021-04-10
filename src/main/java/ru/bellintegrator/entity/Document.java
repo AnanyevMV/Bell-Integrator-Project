@@ -25,6 +25,12 @@ public class Document {
 
     }
 
+    public Document(String docCode, String docNumber, Date docDate) {
+        this.docCode = docCode;
+        this.docNumber = docNumber;
+        this.docDate = docDate;
+    }
+
     public String getDocCode() {
         return docCode;
     }

@@ -8,8 +8,13 @@ public class DocumentId implements Serializable {
 
     private String docNumber;
 
-    private DocumentId() {
+    public DocumentId() {
 
+    }
+
+    public DocumentId(String docCode, String docNumber) {
+        this.docCode = docCode;
+        this.docNumber = docNumber;
     }
 
     @Override

@@ -151,6 +151,13 @@ public class User {
         this.isIdentified = isIdentified;
     }
 
+    public Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
+    }
 
     @Override
     public String toString() {
@@ -168,4 +175,5 @@ public class User {
                 ", isIdentified=" + isIdentified +
                 '}';
     }
+
 }

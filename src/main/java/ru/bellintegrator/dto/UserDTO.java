@@ -10,6 +10,7 @@ public class UserDTO {
     private String phone;
     private String docCode;
     private String docNumber;
+    private String docDate;
     private String citizenshipCode;
     private String isIdentified = "true";
 
@@ -105,6 +106,14 @@ public class UserDTO {
         this.isIdentified = isIdentified;
     }
 
+    public String getDocDate() {
+        return docDate;
+    }
+
+    public void setDocDate(String docDate) {
+        this.docDate = docDate;
+    }
+
     @Override
     public String toString() {
         return "UserDTO{" +
@@ -117,6 +126,7 @@ public class UserDTO {
                 ", phone='" + phone + '\'' +
                 ", docCode='" + docCode + '\'' +
                 ", docNumber='" + docNumber + '\'' +
+                ", docDate='" + docDate + '\'' +
                 ", citizenshipCode='" + citizenshipCode + '\'' +
                 ", isIdentified='" + isIdentified + '\'' +
                 '}';
