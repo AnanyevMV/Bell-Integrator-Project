@@ -3,9 +3,7 @@ package ru.bellintegrator.dto.mapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.bellintegrator.dto.OfficeDTO;
 import ru.bellintegrator.dto.UserDTO;
-import ru.bellintegrator.entity.Office;
 import ru.bellintegrator.entity.User;
 
 import javax.annotation.PostConstruct;

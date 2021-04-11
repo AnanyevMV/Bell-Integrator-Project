@@ -14,7 +14,6 @@ import ru.bellintegrator.entity.Office;
 import ru.bellintegrator.entity.User;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import javax.print.Doc;
 import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
@@ -52,7 +51,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void updateUser(UserDTO userDTO) {
-        // Получаем persisted объект офиса или ошибку
+        // Получаем persisted объект пользователя или ошибку
         User user = this.getUser(userDTO.getId());
 
         // Если параметр officeId равен null, то считаем что офис менять не нужно
@@ -86,12 +85,28 @@ public class UserDAOImpl implements UserDAO {
             user.setCitizenshipCode(userDTO.getCitizenshipCode());
         }
 
+        // Если дата не null, то меняем дату документа
+        if (Objects.nonNull(userDTO.getDocDate())) {
+            user.getDocument().setDocDate(Date.valueOf(userDTO.getDocDate()));
+        }
+
+        // Если код документя не null, то возможно меняем код и номер документа после проверок
         if (Objects.nonNull(userDTO.getDocCode())) {
             throwExceptionIfDocCodeDoesNotExistAndCheckDocNumber(userDTO.getDocCode(), userDTO.getDocNumber());
-            Document document = new Document(userDTO.getDocCode(), userDTO.getDocNumber(), Date.valueOf(userDTO.getDocDate()));
-            user.setDocument(document);
+            // Если код или номер документа не совпадают, то проверяем что код и номер документа ещё не существуют
+            // Если совпадают, то ничего не меняем
+            if (!user.getDocument().getDocCode().equals(userDTO.getDocCode()) || !user.getDocument().getDocNumber().equals(userDTO.getDocNumber())) {
+                throwExceptionIfDocCodeAndDocNumberAlreadyExist(userDTO.getDocCode(), userDTO.getDocNumber());
+                Document oldDocument = user.getDocument();
+                Date date = oldDocument.getDocDate();
+                entityManager.remove(oldDocument);
+                Document newDocument = new Document(userDTO.getDocCode(), userDTO.getDocNumber(), date);
+                user.setDocument(newDocument);
+            }
         }
     }
+
+
 
     @Override
     public void saveUser(UserDTO userDTO) {
@@ -108,6 +123,7 @@ public class UserDAOImpl implements UserDAO {
         }
 
         throwExceptionIfDocCodeDoesNotExistAndCheckDocNumber(userDTO.getDocCode(), userDTO.getDocNumber());
+        throwExceptionIfDocCodeAndDocNumberAlreadyExist(userDTO.getDocCode(), userDTO.getDocNumber());
         Document document = new Document(userDTO.getDocCode(), userDTO.getDocNumber(), Date.valueOf(userDTO.getDocDate()));
 
         User user = userMapper.toEntity(userDTO);
@@ -124,24 +140,32 @@ public class UserDAOImpl implements UserDAO {
         TypedQuery<Country> query = entityManager.createQuery
         ("select c from Country c where c.code = :citizenshipCode", Country.class);
         query.setParameter("citizenshipCode", citizenshipCode);
-        Country country = query.getSingleResult();
-        if (Objects.isNull(country)) {
+        try {
+            query.getSingleResult();
+        } catch (Exception e) {
             throw new BadInputException("Неверный код страны " + citizenshipCode);
         }
     }
 
     private void throwExceptionIfDocCodeDoesNotExistAndCheckDocNumber(String docCode, String docNumber) {
-
         if (Objects.isNull(docNumber)) {
             throw new BadInputException("Номер документа не может быть null");
         }
-
         TypedQuery<DocumentType> query = entityManager.createQuery
         ("select dt from DocumentType dt where dt.docCode = :docCode", DocumentType.class);
         query.setParameter("docCode", docCode);
-        DocumentType documentType = query.getSingleResult();
-        if (Objects.isNull(documentType)) {
-            throw new BadInputException("Неверный код докуумента " + docCode);
+        try {
+            query.getSingleResult();
+        } catch (Exception e) {
+            throw new BadInputException("Неверный код документа " + docCode);
+        }
+    }
+
+    private void throwExceptionIfDocCodeAndDocNumberAlreadyExist(String docCode, String docNumber) {
+        DocumentId documentId = new DocumentId(docCode, docNumber);
+        Document document = entityManager.find(Document.class, documentId);
+        if (Objects.nonNull(document)) {
+            throw new BadInputException("Документ с кодом " + docCode + " и номером " + docNumber + " уже существует");
         }
     }
 

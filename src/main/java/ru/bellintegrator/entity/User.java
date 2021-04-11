@@ -1,5 +1,6 @@
 package ru.bellintegrator.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,7 +26,7 @@ public class User {
     @Column(name = "version")
     private long version = 0;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "office_id")
     private Office office;
 
@@ -47,7 +48,7 @@ public class User {
     @Column(name = "is_identified")
     private Integer isIdentified = 1;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumns({
         @JoinColumn(name="doc_code", referencedColumnName = "doc_code"),
         @JoinColumn(name="doc_number", referencedColumnName = "doc_number")

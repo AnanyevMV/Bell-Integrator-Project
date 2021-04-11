@@ -31,6 +31,18 @@ public class Document {
         this.docDate = docDate;
     }
 
+    public void setDocCode(String docCode) {
+        this.docCode = docCode;
+    }
+
+    public void setDocNumber(String docNumber) {
+        this.docNumber = docNumber;
+    }
+
+    public void setDocDate(Date docDate) {
+        this.docDate = docDate;
+    }
+
     public String getDocCode() {
         return docCode;
     }
