@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class RestErrorController implements ErrorController {
+public class ErrorRestController implements ErrorController {
     @RequestMapping("/error")
     public void handleError() {
         // Наш exception handler просто перехватит exception и вернёт BAD REQUEST
