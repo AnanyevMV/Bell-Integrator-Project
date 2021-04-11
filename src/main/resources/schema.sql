@@ -61,7 +61,9 @@ CREATE TABLE document (
 
   PRIMARY KEY (doc_code, doc_number),
   INDEX IX_document_code (doc_code),
-  INDEX IX_doc_number (doc_number)
+  CONSTRAINT FK_document_code FOREIGN KEY (doc_code) REFERENCES document_type (doc_code)
+  ON DELETE NO ACTION ON UPDATE NO ACTION,
+  INDEX IX_document_date (doc_date)
 );
 
 DROP TABLE IF EXISTS country;
