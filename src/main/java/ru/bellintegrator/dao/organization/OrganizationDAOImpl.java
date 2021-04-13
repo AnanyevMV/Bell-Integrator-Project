@@ -3,7 +3,7 @@ package ru.bellintegrator.dao.organization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.bellintegrator.entity.Organization;
-import ru.bellintegrator.exception.OrganizationNotFoundException;
+import ru.bellintegrator.exception.OrganizationException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -30,11 +30,11 @@ public class OrganizationDAOImpl implements OrganizationDAO {
     @Override
     public Organization getOrganization(Long id) {
         if (Objects.isNull(id)) {
-            throw new OrganizationNotFoundException("Не задано id организации");
+            throw new OrganizationException("Не задано id организации");
         }
         Organization organization = entityManager.find(Organization.class, id);
         if (Objects.isNull(organization)) {
-            throw new OrganizationNotFoundException("Нет организации с таким id " + id);
+            throw new OrganizationException("Нет организации с таким id " + id);
         }
         return organization;
     }
@@ -57,6 +57,10 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 
     @Override
     public void saveOrganization(Organization organization) {
-        entityManager.persist(organization);
+        try {
+            entityManager.persist(organization);
+        } catch (Exception exc) {
+            throw new OrganizationException("Не удалось сохранить организацию. Проверьте уникальность данных", exc);
+        }
     }
 }

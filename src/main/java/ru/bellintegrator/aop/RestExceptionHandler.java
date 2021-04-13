@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import ru.bellintegrator.exception.OfficeNotFoundException;
-import ru.bellintegrator.exception.OrganizationNotFoundException;
+import ru.bellintegrator.exception.OfficeException;
+import ru.bellintegrator.exception.OrganizationException;
 import ru.bellintegrator.exception.BadInputException;
 import ru.bellintegrator.dto.ErrorDTO;
 
@@ -18,13 +18,13 @@ public class RestExceptionHandler{
     }
 
     @ExceptionHandler
-    public ResponseEntity<ErrorDTO> handleOrganizationNotFoundException(OrganizationNotFoundException exc) {
+    public ResponseEntity<ErrorDTO> handleOrganizationNotFoundException(OrganizationException exc) {
         ErrorDTO errorDTO = new ErrorDTO(exc.getMessage());
         return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler
-    public ResponseEntity<ErrorDTO> handleOfficeNotFoundException(OfficeNotFoundException exc) {
+    public ResponseEntity<ErrorDTO> handleOfficeNotFoundException(OfficeException exc) {
         ErrorDTO errorDTO = new ErrorDTO(exc.getMessage());
         return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
     }

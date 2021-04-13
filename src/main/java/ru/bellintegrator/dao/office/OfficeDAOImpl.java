@@ -2,14 +2,10 @@ package ru.bellintegrator.dao.office;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ru.bellintegrator.exception.OrganizationNotFoundException;
-import ru.bellintegrator.exception.BadInputException;
-import ru.bellintegrator.dto.OfficeDTO;
-import ru.bellintegrator.dto.mapper.Mapper;
-import ru.bellintegrator.dto.mapper.OfficeMapper;
+import ru.bellintegrator.exception.OrganizationException;
 import ru.bellintegrator.entity.Office;
 import ru.bellintegrator.entity.Organization;
-import ru.bellintegrator.exception.OfficeNotFoundException;
+import ru.bellintegrator.exception.OfficeException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -35,12 +31,12 @@ public class  OfficeDAOImpl implements OfficeDAO {
     @Override
     public Office getOffice(Long id) {
         if (Objects.isNull(id)) {
-            throw new OfficeNotFoundException("Не задано id офиса");
+            throw new OfficeException("Не задано id офиса");
         }
 
         Office office = entityManager.find(Office.class, id);
         if (Objects.isNull(office)) {
-            throw new OfficeNotFoundException("Нет офиса с таким id " + id);
+            throw new OfficeException("Нет офиса с таким id " + id);
         }
         return office;
     }
@@ -54,7 +50,7 @@ public class  OfficeDAOImpl implements OfficeDAO {
         if (Objects.nonNull(organizationId)) {
             Organization newOrganization = entityManager.find(Organization.class, organizationId);
             if (Objects.isNull(newOrganization)) {
-                throw new OrganizationNotFoundException("Нет организации с таким id " + organizationId);
+                throw new OrganizationException("Нет организации с таким id " + organizationId);
             }
             persistedOffice.setOrganization(newOrganization);
         }
@@ -68,11 +64,11 @@ public class  OfficeDAOImpl implements OfficeDAO {
     @Override
     public void saveOffice(Office office, Long organizationId) {
         if (Objects.isNull(organizationId)) {
-            throw new OrganizationNotFoundException("Не указано id организации");
+            throw new OrganizationException("Не указано id организации");
         }
         Organization organization = entityManager.find(Organization.class, organizationId);
         if (Objects.isNull(organization)) {
-            throw new OrganizationNotFoundException("Нет организации с таким id " + organizationId);
+            throw new OrganizationException("Нет организации с таким id " + organizationId);
         }
         office.setOrganization(organization);
         entityManager.persist(office);

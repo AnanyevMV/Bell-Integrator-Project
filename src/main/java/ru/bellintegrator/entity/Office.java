@@ -27,7 +27,7 @@ public class Office {
     private Organization organization;
 
     @Column(name = "is_active")
-    private Integer isActive = 1;
+    private Integer isActive;
 
     public Office() {
 

@@ -46,7 +46,7 @@ public class User {
     private String phone;
 
     @Column(name = "is_identified")
-    private Integer isIdentified = 1;
+    private Integer isIdentified;
 
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumns({

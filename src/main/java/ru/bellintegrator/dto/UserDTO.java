@@ -12,7 +12,7 @@ public class UserDTO {
     private String docNumber;
     private String docDate;
     private String citizenshipCode;
-    private String isIdentified = "true";
+    private String isIdentified;
 
     public UserDTO() {
 

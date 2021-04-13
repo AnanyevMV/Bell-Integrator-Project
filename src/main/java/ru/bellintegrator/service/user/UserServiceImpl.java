@@ -6,9 +6,13 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.dao.user.UserDAO;
 import ru.bellintegrator.dto.UserDTO;
 import ru.bellintegrator.dto.mapper.UserMapper;
+import ru.bellintegrator.entity.Document;
 import ru.bellintegrator.entity.User;
+import ru.bellintegrator.exception.BadInputException;
 
+import java.sql.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -40,13 +44,26 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void saveUser(UserDTO userDTO) {
+        throwExceptionIfIsIdentifiedFieldIsNotTrueOrFalse(userDTO.getIsIdentified());
         userDTO.setId(null);
-        userDAO.saveUser(userDTO);
+        User user = userMapper.toEntity(userDTO);
+        userDAO.saveUser(user, userDTO.getOfficeId());
     }
 
     @Override
     @Transactional
     public void updateUser(UserDTO userDTO) {
-        userDAO.updateUser(userDTO);
+        throwExceptionIfIsIdentifiedFieldIsNotTrueOrFalse(userDTO.getIsIdentified());
+        User user = userMapper.toEntity(userDTO);
+        userDAO.updateUser(user, userDTO.getOfficeId());
+    }
+
+    private void throwExceptionIfIsIdentifiedFieldIsNotTrueOrFalse(String isIdentified) {
+        if (Objects.isNull(isIdentified)) {
+            return;
+        }
+        if (!(isIdentified.equals("true") || isIdentified.equals("false"))) {
+            throw new BadInputException("Значение поля 'isIdentified' должно быть 'true' или 'false'");
+        }
     }
 }

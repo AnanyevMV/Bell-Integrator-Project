@@ -39,7 +39,7 @@ public class Organization {
     private String phone;
 
     @Column(name = "is_active")
-    private Integer isActive = 1;
+    private Integer isActive;
 
     public Organization() {
 

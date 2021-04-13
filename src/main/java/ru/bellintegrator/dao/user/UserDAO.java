@@ -1,6 +1,6 @@
 package ru.bellintegrator.dao.user;
 
-import ru.bellintegrator.dto.UserDTO;
+import ru.bellintegrator.entity.Document;
 import ru.bellintegrator.entity.User;
 
 import java.util.List;
@@ -10,7 +10,7 @@ public interface UserDAO {
 
     public User getUser(Long id);
 
-    public void updateUser(UserDTO userDTO);
+    public void updateUser(User user, Long officeId);
 
-    public void saveUser(UserDTO userDTO);
+    public void saveUser(User user, Long officeId);
 }

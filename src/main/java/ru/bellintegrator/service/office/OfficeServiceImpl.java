@@ -41,6 +41,9 @@ public class OfficeServiceImpl implements OfficeService {
     @Override
     @Transactional
     public void updateOffice(OfficeDTO officeDTO) {
+        // ModelMapper использует прокси и таким образом перехватывает exception и нужное сообщение и возвращает свой
+        // exception. Поэтому вручную вызываем метод проверки
+        Mapper.throwExceptionIfNotTrueOrFalse(officeDTO.getIsActive());
         Office office = officeMapper.toEntity(officeDTO);
         officeDAO.updateOffice(office, officeDTO.getOrgId());
     }

@@ -1,12 +1,17 @@
 package ru.bellintegrator.dto.mapper;
 
+import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
+import org.modelmapper.spi.MappingContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.bellintegrator.dto.UserDTO;
+import ru.bellintegrator.entity.Document;
 import ru.bellintegrator.entity.User;
 
 import javax.annotation.PostConstruct;
+import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,8 +27,18 @@ public class UserMapper implements Mapper<User, UserDTO> {
 
     @PostConstruct
     private void mapperSettings() {
-        modelMapper.typeMap(UserDTO.class, User.class).addMappings(mapper ->
-                mapper.using(Mapper.booleanStrToIntegerConverter()).map(UserDTO::getIsIdentified, User::setIsIdentified));
+        modelMapper.typeMap(UserDTO.class, User.class).addMappings(mapper -> {
+            mapper.using(Mapper.booleanStrToIntegerConverter()).map(UserDTO::getIsIdentified, User::setIsIdentified);
+        });
+        modelMapper.typeMap(UserDTO.class, User.class).addMappings(new PropertyMap<UserDTO, User>() {
+            @Override
+            protected void configure() {
+                this.using((MappingContext<UserDTO, Document> mappingContext) ->
+                new Document(mappingContext.getSource().getDocCode(),
+                mappingContext.getSource().getDocNumber(), Date.valueOf
+                (mappingContext.getSource().getDocDate()))).map(source, destination.getDocument());
+            }
+        });
 
         modelMapper.typeMap(User.class, UserDTO.class).addMappings(mapper ->{
             mapper.using(Mapper.booleanIntegerToStrConverter()).map(User::getIsIdentified, UserDTO::setIsIdentified);
