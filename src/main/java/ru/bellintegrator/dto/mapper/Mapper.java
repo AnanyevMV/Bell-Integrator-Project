@@ -1,9 +1,8 @@
 package ru.bellintegrator.dto.mapper;
 
 import org.modelmapper.Converter;
-import ru.bellintegrator.dto.BadInputException;
+import ru.bellintegrator.exception.BadInputException;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 

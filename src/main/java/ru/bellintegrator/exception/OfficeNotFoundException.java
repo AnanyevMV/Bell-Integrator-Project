@@ -1,4 +1,4 @@
-package ru.bellintegrator.dao.office;
+package ru.bellintegrator.exception;
 
 public class OfficeNotFoundException extends RuntimeException {
     public OfficeNotFoundException(String message) {

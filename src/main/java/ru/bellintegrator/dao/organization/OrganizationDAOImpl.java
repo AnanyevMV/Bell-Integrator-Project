@@ -3,6 +3,8 @@ package ru.bellintegrator.dao.organization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.bellintegrator.entity.Organization;
+import ru.bellintegrator.exception.OrganizationNotFoundException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;

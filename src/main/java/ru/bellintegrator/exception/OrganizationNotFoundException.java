@@ -1,4 +1,4 @@
-package ru.bellintegrator.dao.organization;
+package ru.bellintegrator.exception;
 
 public class OrganizationNotFoundException extends RuntimeException {
     public OrganizationNotFoundException(String message) {

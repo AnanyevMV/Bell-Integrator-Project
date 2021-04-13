@@ -4,9 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import ru.bellintegrator.dao.office.OfficeNotFoundException;
-import ru.bellintegrator.dao.organization.OrganizationNotFoundException;
-import ru.bellintegrator.dto.BadInputException;
+import ru.bellintegrator.exception.OfficeNotFoundException;
+import ru.bellintegrator.exception.OrganizationNotFoundException;
+import ru.bellintegrator.exception.BadInputException;
 import ru.bellintegrator.dto.ErrorDTO;
 
 @RestControllerAdvice

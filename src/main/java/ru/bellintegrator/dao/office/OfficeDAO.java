@@ -1,6 +1,5 @@
 package ru.bellintegrator.dao.office;
 
-import ru.bellintegrator.dto.OfficeDTO;
 import ru.bellintegrator.entity.Office;
 
 import java.util.List;
@@ -11,8 +10,8 @@ public interface OfficeDAO {
 
     public Office getOffice(Long id);
 
-    public void updateOffice(OfficeDTO officeDTO);
+    public void updateOffice(Office office, Long organizationId);
 
-    public void saveOffice(OfficeDTO officeDTO);
+    public void saveOffice(Office office, Long organizationId);
 
 }

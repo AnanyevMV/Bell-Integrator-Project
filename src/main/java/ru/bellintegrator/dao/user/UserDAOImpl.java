@@ -2,8 +2,8 @@ package ru.bellintegrator.dao.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ru.bellintegrator.dao.office.OfficeNotFoundException;
-import ru.bellintegrator.dto.BadInputException;
+import ru.bellintegrator.exception.OfficeNotFoundException;
+import ru.bellintegrator.exception.BadInputException;
 import ru.bellintegrator.dto.UserDTO;
 import ru.bellintegrator.dto.mapper.UserMapper;
 import ru.bellintegrator.entity.Country;
@@ -12,6 +12,8 @@ import ru.bellintegrator.entity.DocumentId;
 import ru.bellintegrator.entity.DocumentType;
 import ru.bellintegrator.entity.Office;
 import ru.bellintegrator.entity.User;
+import ru.bellintegrator.exception.UserNotFoundException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.sql.Date;

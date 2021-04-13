@@ -11,5 +11,5 @@ public interface OfficeService {
 
     public void updateOffice(OfficeDTO officeDTO);
 
-    public void saveOffice( OfficeDTO officeDTO);
+    public void saveOffice(OfficeDTO officeDTO);
 }

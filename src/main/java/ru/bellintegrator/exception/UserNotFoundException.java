@@ -1,4 +1,4 @@
-package ru.bellintegrator.dao.user;
+package ru.bellintegrator.exception;
 
 public class UserNotFoundException extends RuntimeException {
     public UserNotFoundException(String message) {

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.dao.office.OfficeDAO;
 import ru.bellintegrator.dto.OfficeDTO;
+import ru.bellintegrator.dto.mapper.Mapper;
 import ru.bellintegrator.dto.mapper.OfficeMapper;
 import ru.bellintegrator.entity.Office;
 
@@ -40,13 +41,18 @@ public class OfficeServiceImpl implements OfficeService {
     @Override
     @Transactional
     public void updateOffice(OfficeDTO officeDTO) {
-        officeDAO.updateOffice(officeDTO);
+        Office office = officeMapper.toEntity(officeDTO);
+        officeDAO.updateOffice(office, officeDTO.getOrgId());
     }
 
     @Override
     @Transactional
     public void saveOffice(OfficeDTO officeDTO) {
+        // ModelMapper использует прокси и таким образом перехватывает exception и нужное сообщение и возвращает свой
+        // exception. Поэтому вручную вызываем метод проверки
+        Mapper.throwExceptionIfNotTrueOrFalse(officeDTO.getIsActive());
         officeDTO.setId(null);
-        officeDAO.saveOffice(officeDTO);
+        Office office = officeMapper.toEntity(officeDTO);
+        officeDAO.saveOffice(office, officeDTO.getOrgId());
     }
 }
