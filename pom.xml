@@ -13,19 +13,24 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>bell-integrator-project</name>
 	<description>Project for Bell Integrator</description>
+
 	<properties>
 		<java.version>1.8</java.version>
 		<modelmapper.version>2.4.0</modelmapper.version>
 	</properties>
+
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -37,6 +42,7 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- Библиотека для маппинга DTO и Entity -->
 		<dependency>
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>
@@ -48,6 +54,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>

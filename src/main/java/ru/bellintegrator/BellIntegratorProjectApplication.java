@@ -8,6 +8,10 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class BellIntegratorProjectApplication {
 
+	/**
+	 * Бин ModelMapper, который отвечает за маппинг между DTO и Entity
+	 * @return объект класса ModelMapper
+	 */
 	@Bean
 	public ModelMapper modelMapper() {
 		ModelMapper modelMapper = new ModelMapper();
