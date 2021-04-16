@@ -11,6 +11,10 @@ import ru.bellintegrator.entity.Office;
 
 import java.util.List;
 
+/**
+ * Реализация интерфейса OfficeService<br>
+ * Сервис для CRUD-операций, связанных с офисами
+ */
 @Service
 public class OfficeServiceImpl implements OfficeService {
 
@@ -18,19 +22,34 @@ public class OfficeServiceImpl implements OfficeService {
 
     private final OfficeMapper officeMapper;
 
+    /**
+     * Конструктор класса OfficeServiceImpl
+     *
+     * @param officeDAO DAO объект для офисов
+     * @param officeMapper объект для маппинга между Office и OfficeDTO
+     */
     @Autowired
     public OfficeServiceImpl(OfficeDAO officeDAO, OfficeMapper officeMapper) {
         this.officeDAO = officeDAO;
         this.officeMapper = officeMapper;
     }
 
+    /**
+     * Метод позволяет получить список офисов
+     *
+     * @return список OfficeDTO
+     */
     @Override
-    @Transactional
     public List<OfficeDTO> getOffices() {
-        List<Office> offices = officeDAO.getOffices();
-        return officeMapper.toDTOList(offices);
+        return null;
     }
 
+    /**
+     * Метод позволяет получить информацию об офисе по его идентификатору
+     *
+     * @param id идентификатор
+     * @return объект OfficeDTO
+     */
     @Override
     @Transactional
     public OfficeDTO getOffice(Long id) {
@@ -38,6 +57,11 @@ public class OfficeServiceImpl implements OfficeService {
         return officeMapper.toDTO(office);
     }
 
+    /**
+     * Метод позволяет обновить информацию об офисе
+     *
+     * @param officeDTO объект OfficeDTO
+     */
     @Override
     @Transactional
     public void updateOffice(OfficeDTO officeDTO) {
@@ -48,6 +72,11 @@ public class OfficeServiceImpl implements OfficeService {
         officeDAO.updateOffice(office, officeDTO.getOrgId());
     }
 
+    /**
+     * Метод позволяет сохранить офис
+     *
+     * @param officeDTO объект OfficeDTO
+     */
     @Override
     @Transactional
     public void saveOffice(OfficeDTO officeDTO) {

@@ -54,6 +54,7 @@ public class OrganizationDTO {
 
     /**
      * Геттер для поля id
+     *
      * @return идентификатор организации
      */
     public Long getId() {
@@ -62,6 +63,7 @@ public class OrganizationDTO {
 
     /**
      * Сеттер для поля id
+     *
      * @param id идентификатор организации
      */
     public void setId(Long id) {
@@ -70,6 +72,7 @@ public class OrganizationDTO {
 
     /**
      * Геттер для поля name
+     *
      * @return короткое имя организации
      */
     public String getName() {
@@ -78,6 +81,7 @@ public class OrganizationDTO {
 
     /**
      * Сеттер для поля name
+     *
      * @param name короткое имя организации
      */
     public void setName(String name) {
@@ -86,6 +90,7 @@ public class OrganizationDTO {
 
     /**
      * Геттер для поля fullName
+     *
      * @return полное имя организации
      */
     public String getFullName() {
@@ -94,6 +99,7 @@ public class OrganizationDTO {
 
     /**
      * Сеттер для поля fullName
+     *
      * @param fullName полное имя организации
      */
     public void setFullName(String fullName) {
@@ -102,6 +108,7 @@ public class OrganizationDTO {
 
     /**
      * Геттер для поля inn
+     *
      * @return ИНН организации
      */
     public String getInn() {
@@ -110,6 +117,7 @@ public class OrganizationDTO {
 
     /**
      * Сеттер для поля inn
+     *
      * @param inn ИНН организации
      */
     public void setInn(String inn) {
@@ -118,6 +126,7 @@ public class OrganizationDTO {
 
     /**
      * Геттер для поля kpp
+     *
      * @return КПП организации
      */
     public String getKpp() {
@@ -126,6 +135,7 @@ public class OrganizationDTO {
 
     /**
      * Сеттер для поля kpp
+     *
      * @param kpp КПП организации
      */
     public void setKpp(String kpp) {
@@ -134,6 +144,7 @@ public class OrganizationDTO {
 
     /**
      * Геттер для поля address
+     *
      * @return адрес организации
      */
     public String getAddress() {
@@ -142,6 +153,7 @@ public class OrganizationDTO {
 
     /**
      * Сеттер для поля address
+     *
      * @param address адрес организации
      */
     public void setAddress(String address) {
@@ -150,6 +162,7 @@ public class OrganizationDTO {
 
     /**
      * Геттер для поля phone
+     *
      * @return телефон организации
      */
     public String getPhone() {
@@ -158,6 +171,7 @@ public class OrganizationDTO {
 
     /**
      * Сеттер для поля phone
+     *
      * @param phone телефон организации
      */
     public void setPhone(String phone) {
@@ -166,6 +180,7 @@ public class OrganizationDTO {
 
     /**
      * Геттер для поля isActive
+     *
      * @return активна ли организация (формат "true"/"false")
      */
     public String getIsActive() {
@@ -174,6 +189,7 @@ public class OrganizationDTO {
 
     /**
      * Сеттер для поля isActive
+     *
      * @param isActive активна ли организация (формат "true"/"false")
      */
     public void setIsActive(String isActive) {
@@ -182,6 +198,7 @@ public class OrganizationDTO {
 
     /**
      * Переопределение метода toString()
+     *
      * @return строковое представление объекта OrganizationDTO
      */
     @Override

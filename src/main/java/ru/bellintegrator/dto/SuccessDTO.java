@@ -19,6 +19,7 @@ public class SuccessDTO {
 
     /**
      * Конструктор с параметром класса SuccessDTO
+     *
      * @param result сообщение о результате
      */
     public SuccessDTO(String result) {
@@ -27,6 +28,7 @@ public class SuccessDTO {
 
     /**
      * Геттер для поля result
+     *
      * @return результат
      */
     public String getResult() {
@@ -35,6 +37,7 @@ public class SuccessDTO {
 
     /**
      * Сеттер для поля result
+     *
      * @param result результат
      */
     public void setResult(String result) {

@@ -10,6 +10,10 @@ import ru.bellintegrator.entity.Country;
 
 import java.util.List;
 
+/**
+ * Реализация интерфейса CountryService<br>
+ * Сервиса предоставляет список стран и их кодов
+ */
 @Service
 public class CountryServiceImpl implements CountryService {
 
@@ -17,12 +21,23 @@ public class CountryServiceImpl implements CountryService {
 
     private final CountryMapper countryMapper;
 
+    /**
+     * Конструктор класса CountryServiceImpl
+     *
+     * @param countryDAO DAO объект для стран
+     * @param countryMapper объект для маппинга между Country и CountryDTO
+     */
     @Autowired
     public CountryServiceImpl(CountryDAO countryDAO, CountryMapper countryMapper) {
         this.countryDAO = countryDAO;
         this.countryMapper = countryMapper;
     }
 
+    /**
+     * Метод позволяет получить список из названий стран и их кодов
+     *
+     * @return список CountryDTO
+     */
     @Override
     @Transactional
     public List<CountryDTO> getCountries() {

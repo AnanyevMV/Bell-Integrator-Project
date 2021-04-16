@@ -43,6 +43,7 @@ public class OfficeDTO {
 
     /**
      * Геттер для поля id
+     *
      * @return идентификатор офиса
      */
     public Long getId() {
@@ -51,6 +52,7 @@ public class OfficeDTO {
 
     /**
      * Сеттер для поля id
+     *
      * @param id идентификатор офиса
      */
     public void setId(Long id) {
@@ -59,6 +61,7 @@ public class OfficeDTO {
 
     /**
      * Геттер для поля name
+     *
      * @return название офиса
      */
     public String getName() {
@@ -67,6 +70,7 @@ public class OfficeDTO {
 
     /**
      * Сеттер для поля name
+     *
      * @param name название офиса
      */
     public void setName(String name) {
@@ -75,6 +79,7 @@ public class OfficeDTO {
 
     /**
      * Геттер для поля address
+     *
      * @return адрес офиса
      */
     public String getAddress() {
@@ -83,6 +88,7 @@ public class OfficeDTO {
 
     /**
      * Сеттер для поля address
+     *
      * @param address адрес офиса
      */
     public void setAddress(String address) {
@@ -91,6 +97,7 @@ public class OfficeDTO {
 
     /**
      * Геттер для поля phone
+     *
      * @return телефон офиса
      */
     public String getPhone() {
@@ -99,6 +106,7 @@ public class OfficeDTO {
 
     /**
      * Сеттер для поля phone
+     *
      * @param phone телефон офиса
      */
     public void setPhone(String phone) {
@@ -107,6 +115,7 @@ public class OfficeDTO {
 
     /**
      * Геттер для поля orgId
+     *
      * @return идентификатор организации
      */
     public Long getOrgId() {
@@ -115,6 +124,7 @@ public class OfficeDTO {
 
     /**
      * Сеттер для поля orgID
+     *
      * @param orgId идентификатор организации
      */
     public void setOrgId(Long orgId) {
@@ -123,6 +133,7 @@ public class OfficeDTO {
 
     /**
      * Геттер для поля isActive
+     *
      * @return активен ли офис (формат "true"/"false")
      */
     public String getIsActive() {
@@ -131,6 +142,7 @@ public class OfficeDTO {
 
     /**
      * Сеттер для поля isActive
+     *
      * @param isActive активен ли офис (формат "true"/"false")
      */
     public void setIsActive(String isActive) {
@@ -139,6 +151,7 @@ public class OfficeDTO {
 
     /**
      * Переопределение метода toString()
+     *
      * @return строковое представление объекта OfficeDTO
      */
     @Override

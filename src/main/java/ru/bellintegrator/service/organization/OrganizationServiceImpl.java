@@ -11,6 +11,10 @@ import ru.bellintegrator.entity.Organization;
 
 import java.util.List;
 
+/**
+ * Реализация интерфейса OrganizationService<br>
+ * Сервис для CRUD-операций, связанных с организациями
+ */
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
 
@@ -18,12 +22,23 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     private final OrganizationMapper organizationMapper;
 
+    /**
+     * Конструктор класса OrganizationServiceImpl
+     *
+     * @param organizationDAO DAO объект для организаций
+     * @param organizationMapper объект для маппинга между Organization и OrganizationDTO
+     */
     @Autowired
     public OrganizationServiceImpl(OrganizationDAO organizationDAO, OrganizationMapper organizationMapper) {
         this.organizationDAO = organizationDAO;
         this.organizationMapper = organizationMapper;
     }
 
+    /**
+     * Метод позволяет получить список организаций
+     *
+     * @return список OrganizationDTO
+     */
     @Override
     @Transactional
     public List<OrganizationDTO> getOrganizations() {
@@ -31,6 +46,12 @@ public class OrganizationServiceImpl implements OrganizationService {
         return organizationMapper.toDTOList(organizations);
     }
 
+    /**
+     * Метод позволяет получить информацию об организации по её идентификатору
+     *
+     * @param id идентификтор организации
+     * @return объект OrganizationDTO
+     */
     @Override
     @Transactional
     public OrganizationDTO getOrganization(Long id) {
@@ -38,6 +59,11 @@ public class OrganizationServiceImpl implements OrganizationService {
         return organizationMapper.toDTO(organization);
     }
 
+    /**
+     * Метод позволяет сохранить организацию
+     *
+     * @param organizationDTO объект OrganizationDTO
+     */
     @Override
     @Transactional
     public void saveOrganization(OrganizationDTO organizationDTO) {
@@ -49,6 +75,11 @@ public class OrganizationServiceImpl implements OrganizationService {
         organizationDAO.saveOrganization(organization);
     }
 
+    /**
+     * Метод позволяет обновить информцию об организации
+     *
+     * @param organizationDTO объект OrganizationDTO
+     */
     @Override
     @Transactional
     public void updateOrganization(OrganizationDTO organizationDTO) {

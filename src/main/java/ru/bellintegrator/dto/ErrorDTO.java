@@ -16,6 +16,7 @@ public class ErrorDTO {
 
     /**
      * Конструктор с параметрами класса ErrorDTO
+     *
      * @param error сообщение об ошибке
      */
     public ErrorDTO(String error) {
@@ -24,6 +25,7 @@ public class ErrorDTO {
 
     /**
      * Геттер для поля error
+     *
      * @return сообщение об ошибке
      */
     public String getError() {
@@ -32,6 +34,7 @@ public class ErrorDTO {
 
     /**
      * Сеттер для поля error
+     *
      * @param error сообщение об ошибке
      */
     public void setError(String error) {
@@ -40,6 +43,7 @@ public class ErrorDTO {
 
     /**
      * Переопределение метода toString()
+     *
      * @return строковое представление объекта ErrorDTO
      */
     @Override

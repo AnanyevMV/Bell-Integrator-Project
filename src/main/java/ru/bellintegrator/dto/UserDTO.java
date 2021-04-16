@@ -74,6 +74,7 @@ public class UserDTO {
 
     /**
      * Геттер для поля id
+     *
      * @return идентификатор пользователя
      */
     public Long getId() {
@@ -82,6 +83,7 @@ public class UserDTO {
 
     /**
      * Сеттер для поля id
+     *
      * @param id идентификатор пользователя
      */
     public void setId(Long id) {
@@ -90,6 +92,7 @@ public class UserDTO {
 
     /**
      * Геттер для поля officeId
+     *
      * @return идентификатор офиса
      */
     public Long getOfficeId() {
@@ -98,6 +101,7 @@ public class UserDTO {
 
     /**
      * Сеттер для поля officeId
+     *
      * @param officeId идентификатор офиса
      */
     public void setOfficeId(Long officeId) {
@@ -106,6 +110,7 @@ public class UserDTO {
 
     /**
      * Геттер для поля firstName
+     *
      * @return имя пользователя
      */
     public String getFirstName() {
@@ -114,6 +119,7 @@ public class UserDTO {
 
     /**
      * Сеттер для поля firstName
+     *
      * @param firstName имя пользователя
      */
     public void setFirstName(String firstName) {
@@ -122,6 +128,7 @@ public class UserDTO {
 
     /**
      * Геттер для поля lastName
+     *
      * @return фамилия пользователя
      */
     public String getLastName() {
@@ -130,6 +137,7 @@ public class UserDTO {
 
     /**
      * Сеттер для поля lastName
+     *
      * @param lastName фамилия пользователя
      */
     public void setLastName(String lastName) {
@@ -138,6 +146,7 @@ public class UserDTO {
 
     /**
      * Геттер для поля middleName
+     *
      * @return второе личное имя пользователя
      */
     public String getMiddleName() {
@@ -146,6 +155,7 @@ public class UserDTO {
 
     /**
      * Сеттер для поля middleName
+     *
      * @param middleName второе личное имя пользователя
      */
     public void setMiddleName(String middleName) {
@@ -154,6 +164,7 @@ public class UserDTO {
 
     /**
      * Геттер для поля position
+     *
      * @return должность пользователя
      */
     public String getPosition() {
@@ -162,6 +173,7 @@ public class UserDTO {
 
     /**
      * Сеттер для поля position
+     *
      * @param position должность пользователя
      */
     public void setPosition(String position) {
@@ -170,6 +182,7 @@ public class UserDTO {
 
     /**
      * Геттер для поля phone
+     *
      * @return телефон пользователя
      */
     public String getPhone() {
@@ -178,6 +191,7 @@ public class UserDTO {
 
     /**
      * Сеттер для поля phone
+     *
      * @param phone телефон пользователя
      */
     public void setPhone(String phone) {
@@ -186,6 +200,7 @@ public class UserDTO {
 
     /**
      * Геттер для поля docCode
+     *
      * @return код документа
      */
     public String getDocCode() {
@@ -194,6 +209,7 @@ public class UserDTO {
 
     /**
      * Сеттер для поля docCode
+     *
      * @param docCode код документа
      */
     public void setDocCode(String docCode) {
@@ -202,6 +218,7 @@ public class UserDTO {
 
     /**
      * Геттер для поля docNumber
+     *
      * @return номер документа
      */
     public String getDocNumber() {
@@ -210,6 +227,7 @@ public class UserDTO {
 
     /**
      * Сеттер для поля docNumber
+     *
      * @param docNumber номер документа
      */
     public void setDocNumber(String docNumber) {
@@ -218,6 +236,7 @@ public class UserDTO {
 
     /**
      * Геттер для поля citizenshipCode
+     *
      * @return код страны
      */
     public String getCitizenshipCode() {
@@ -226,6 +245,7 @@ public class UserDTO {
 
     /**
      * Сеттер для поля citizenshipCode
+     *
      * @param citizenshipCode код страны
      */
     public void setCitizenshipCode(String citizenshipCode) {
@@ -234,6 +254,7 @@ public class UserDTO {
 
     /**
      * Геттер для поля isIdentified
+     *
      * @return идентифецирован ли пользователь (формат "true"/"false")
      */
     public String getIsIdentified() {
@@ -242,6 +263,7 @@ public class UserDTO {
 
     /**
      * Сеттер для поля isIdentified
+     *
      * @param isIdentified идентифецирован ли пользователь (формат "true"/"false")
      */
     public void setIsIdentified(String isIdentified) {
@@ -250,6 +272,7 @@ public class UserDTO {
 
     /**
      * Геттер для поля docDate
+     *
      * @return дата документа
      */
     public String getDocDate() {
@@ -258,6 +281,7 @@ public class UserDTO {
 
     /**
      * Сеттер для поля docDate
+     *
      * @param docDate дата документа
      */
     public void setDocDate(String docDate) {
@@ -266,6 +290,7 @@ public class UserDTO {
 
     /**
      * Переопределение метода toString()
+     *
      * @return строковое представление объекта UserDTO
      */
     @Override

@@ -26,6 +26,7 @@ public class DocumentTypeRestController {
     /**
      * Конструктор класса DocumentTypeRestService. Используется внедрение зависимости<br>
      * DocumentTypeService через конструктор.
+     *
      * @param documentTypeService - сервис, возвращающий список DocumentTypeDTO
      */
     @Autowired

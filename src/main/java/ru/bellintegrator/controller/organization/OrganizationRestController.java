@@ -23,6 +23,7 @@ public class OrganizationRestController {
     /**
      * Конструктор класса OrganizationRestController. Используется внедрение зависимости organizationService<br>
      * через конструктор
+     *
      * @param organizationService - сервис для получения, сохранения, обновления организаций
      */
     @Autowired
@@ -32,6 +33,7 @@ public class OrganizationRestController {
 
     /**
      * Метод обрабатывает GET-запрос для получения списка всех организаций.
+     *
      * @return список OrganizationDTO
      */
     @GetMapping("/organization/list")
@@ -41,6 +43,7 @@ public class OrganizationRestController {
 
     /**
      * Метод обрабатывает GET-запрос для получения организации по её идентификатору
+     *
      * @param id идентификатор организации
      * @return OrganizationDTO
      */
@@ -51,6 +54,7 @@ public class OrganizationRestController {
 
     /**
      * Метод обрабатывает POST-запрос для сохранения организации
+     *
      * @param organizationDTO DTO-объект, полученный из тела HTTP-запроса
      */
     @PostMapping("/organization/save")
@@ -60,6 +64,7 @@ public class OrganizationRestController {
 
     /**
      * Метод обрабатывает PUT-запрос для обновления организации
+     *
      * @param organizationDTO DTO-объект, полученный из тела HTTP-запроса
      */
     @PutMapping("/organization/update")

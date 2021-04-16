@@ -19,6 +19,7 @@ public class DocumentTypeMapper implements Mapper<DocumentType, DocumentTypeDTO>
 
     /**
      * Конструктор класса DocumentTypeMapper
+     *
      * @param modelMapper объект класса ModelMapper
      */
     @Autowired
@@ -28,6 +29,7 @@ public class DocumentTypeMapper implements Mapper<DocumentType, DocumentTypeDTO>
 
     /**
      * Маппинг из DocumentTypeDTO в DocumentType
+     *
      * @param documentTypeDTO объект DocumentTypeDTO
      * @return объект DocumentType
      */
@@ -38,6 +40,7 @@ public class DocumentTypeMapper implements Mapper<DocumentType, DocumentTypeDTO>
 
     /**
      * Маппинг из DocumentType в DocumentTypeDTO
+     *
      * @param documentType объект DocumentType
      * @return объект DocumentTypeDTO
      */
@@ -48,6 +51,7 @@ public class DocumentTypeMapper implements Mapper<DocumentType, DocumentTypeDTO>
 
     /**
      * Маппинг из списка DocumentTypeDTO в список DocumentType
+     *
      * @param documentTypeDTOList список DocumentTypeDTO
      * @return список DocumentType
      */
@@ -59,6 +63,7 @@ public class DocumentTypeMapper implements Mapper<DocumentType, DocumentTypeDTO>
 
     /**
      * Маппинг из списка DocumentType в список DocumentTypeDTO
+     *
      * @param documentTypeList список DocumentType
      * @return список DocumentTypeDTO
      */

@@ -29,6 +29,7 @@ public class OfficeRestController {
     /**
      * Конструктор класса OfficeRestController. Используется внедрение зависимости OfficeService<br>
      * через конструктор
+     *
      * @param officeService - сервис для получения, сохранения, обновления офисов
      */
     @Autowired
@@ -38,6 +39,7 @@ public class OfficeRestController {
 
     /**
      * Метод обрабатывает GET-запрос для получения списка всех офисов.
+     *
      * @return список OfficeDTO
      */
     @GetMapping("/office/list")
@@ -47,6 +49,7 @@ public class OfficeRestController {
 
     /**
      * Метод обрабатывает GET-запрос для получения офиса по его идентификатору
+     *
      * @param id идентификатор офиса
      * @return OfficeDTO
      */
@@ -57,6 +60,7 @@ public class OfficeRestController {
 
     /**
      * Метод обрабатывает PUT-запрос для обновленния офиса
+     *
      * @param officeDTO DTO-объект, полученный из тела HTTP-запроса
      */
     @PutMapping("/office/update")
@@ -66,6 +70,7 @@ public class OfficeRestController {
 
     /**
      * Метод обрабатывает POST-запрос для сохранения офиса
+     *
      * @param officeDto DTO-объект, полученный из тела HTTP-запроса
      */
     @PostMapping("/office/save")

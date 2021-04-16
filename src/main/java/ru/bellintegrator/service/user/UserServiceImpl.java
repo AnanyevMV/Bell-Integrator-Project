@@ -21,12 +21,23 @@ public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
 
+    /**
+     * Конструктор класса UserServiceImpl
+     *
+     * @param userDAO DAO объект для пользователей
+     * @param userMapper объект для маппинга между User и UserDTO
+     */
     @Autowired
     public UserServiceImpl(UserDAO userDAO, UserMapper userMapper) {
         this.userDAO = userDAO;
         this.userMapper = userMapper;
     }
 
+    /**
+     * Метод позвволяет получить список пользователей
+     *
+     * @return список UserDTO
+     */
     @Override
     @Transactional
     public List<UserDTO> getUsers() {
@@ -34,6 +45,12 @@ public class UserServiceImpl implements UserService {
         return userMapper.toDTOList(users);
     }
 
+    /**
+     * Метод позволяет получить пользователя по его идентификатору
+     *
+     * @param id идентификатор пользователя
+     * @return объект UserDTO
+     */
     @Override
     @Transactional
     public UserDTO getUser(Long id) {
@@ -41,6 +58,11 @@ public class UserServiceImpl implements UserService {
         return userMapper.toDTO(user);
     }
 
+    /**
+     * Метод позволяет сохранить пользователя
+     *
+     * @param userDTO объект UserDTO
+     */
     @Override
     @Transactional
     public void saveUser(UserDTO userDTO) {
@@ -50,6 +72,11 @@ public class UserServiceImpl implements UserService {
         userDAO.saveUser(user, userDTO.getOfficeId());
     }
 
+    /**
+     * Метод позволяет обновить пользователя
+     *
+     * @param userDTO объект UserDTO
+     */
     @Override
     @Transactional
     public void updateUser(UserDTO userDTO) {
@@ -58,6 +85,10 @@ public class UserServiceImpl implements UserService {
         userDAO.updateUser(user, userDTO.getOfficeId());
     }
 
+    /**
+     * Метод для валидации строки. Если строка не равна "true" или "false", то будет выброшено исключение.
+     * @param isIdentified строка для валидации
+     */
     private void throwExceptionIfIsIdentifiedFieldIsNotTrueOrFalse(String isIdentified) {
         if (Objects.isNull(isIdentified)) {
             return;

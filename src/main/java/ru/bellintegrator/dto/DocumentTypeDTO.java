@@ -4,7 +4,14 @@ package ru.bellintegrator.dto;
  * Класс DocumentTypeDTO отвечает за DTO объекты типов документов
  */
 public class DocumentTypeDTO {
+    /**
+     * Название документа
+     */
     private String name;
+
+    /**
+     * Код документа
+     */
     private String code;
 
     /**
@@ -16,6 +23,7 @@ public class DocumentTypeDTO {
 
     /**
      * Конструктор с параметрами класса DocumentTypeDTO
+     *
      * @param name название документа
      * @param code код документа
      */
@@ -26,6 +34,7 @@ public class DocumentTypeDTO {
 
     /**
      * Геттер для поля name
+     *
      * @return название документа
      */
     public String getName() {
@@ -34,6 +43,7 @@ public class DocumentTypeDTO {
 
     /**
      * Сеттер для поля name
+     *
      * @param name название документа
      */
     public void setName(String name) {
@@ -42,6 +52,7 @@ public class DocumentTypeDTO {
 
     /**
      * Геттер для поля code
+     *
      * @return код документа
      */
     public String getCode() {
@@ -50,6 +61,7 @@ public class DocumentTypeDTO {
 
     /**
      * Сеттер для поля code
+     *
      * @param code код документа
      */
     public void setCode(String code) {

@@ -19,6 +19,7 @@ public class CountryMapper implements Mapper<Country, CountryDTO> {
 
     /**
      * Конструктор класса CountryMapper
+     *
      * @param modelMapper объект класса ModelMapper
      */
     @Autowired
@@ -28,6 +29,7 @@ public class CountryMapper implements Mapper<Country, CountryDTO> {
 
     /**
      * Маппинг из CountryDTO в Country
+     *
      * @param countryDTO объект CountryDTO
      * @return объект Country
      */
@@ -38,6 +40,7 @@ public class CountryMapper implements Mapper<Country, CountryDTO> {
 
     /**
      * Маппинг из Country в CountryDTO
+     *
      * @param country объект Country
      * @return объект CountryDTO
      */
@@ -48,6 +51,7 @@ public class CountryMapper implements Mapper<Country, CountryDTO> {
 
     /**
      * Маппинг из списка CountryDTO в список Country
+     *
      * @param countryDTOList список CountryDTO
      * @return список Country
      */
@@ -59,6 +63,7 @@ public class CountryMapper implements Mapper<Country, CountryDTO> {
 
     /**
      * Маппинг из списка Country в список CountryDTO
+     *
      * @param countryList список Country
      * @return список CountryDTO
      */

@@ -24,6 +24,7 @@ public class UserMapper implements Mapper<User, UserDTO> {
 
     /**
      * Конструктор класса UserMapper
+     *
      * @param modelMapper объект класса ModelMapper
      */
     @Autowired
@@ -60,6 +61,7 @@ public class UserMapper implements Mapper<User, UserDTO> {
 
     /**
      * Маппинг из UserDTO в User
+     *
      * @param dto объект UserDTO
      * @return объект User
      */
@@ -70,6 +72,7 @@ public class UserMapper implements Mapper<User, UserDTO> {
 
     /**
      * Маппинг из User в UserDTO
+     *
      * @param entity объект User
      * @return объект UserDTO
      */
@@ -80,6 +83,7 @@ public class UserMapper implements Mapper<User, UserDTO> {
 
     /**
      * Маппинг из списка UserDTO в список User
+     *
      * @param dtoList список UserDTO
      * @return список User
      */
@@ -90,6 +94,7 @@ public class UserMapper implements Mapper<User, UserDTO> {
 
     /**
      * Маппинг из списка User в список UserDTO
+     *
      * @param entityList список User
      * @return список UserDTO
      */

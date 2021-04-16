@@ -20,6 +20,7 @@ public class OfficeMapper implements Mapper<Office, OfficeDTO> {
 
     /**
      * Конструктор класса OfficeMapper
+     *
      * @param modelMapper объект класса ModelMapper
      */
     @Autowired
@@ -43,6 +44,7 @@ public class OfficeMapper implements Mapper<Office, OfficeDTO> {
 
     /**
      * Маппинг из OfficeDTO в Office
+     *
      * @param dto объект OfficeDTO
      * @return объект Office
      */
@@ -53,6 +55,7 @@ public class OfficeMapper implements Mapper<Office, OfficeDTO> {
 
     /**
      * Маппинг из Office в OfficeDTO
+     *
      * @param entity объект Office
      * @return объект OfficeDTO
      */
@@ -63,6 +66,7 @@ public class OfficeMapper implements Mapper<Office, OfficeDTO> {
 
     /**
      * Маппинг из списка OfficeDTO в список Office
+     *
      * @param dtoList объект OfficeDTO
      * @return список Office
      */
@@ -74,6 +78,7 @@ public class OfficeMapper implements Mapper<Office, OfficeDTO> {
 
     /**
      * Маппинг из списка Office в список OfficeDTO
+     *
      * @param entityList список Office
      * @return список OfficeDTO
      */

@@ -26,6 +26,7 @@ public class CountryRestController {
 
     /**
      * Конструктор класса CountryRestController. Используется внедрение зависимости CountryService через конструктор.
+     *
      * @param countryService - сервис, возвращающий список CountryDTO
      */
     @Autowired
@@ -35,6 +36,7 @@ public class CountryRestController {
 
     /**
      * Справочный метод контроллера, возвращающий страны и их коды.
+     *
      * @return список стран и их кодов
      */
     @GetMapping(value = "/countries")

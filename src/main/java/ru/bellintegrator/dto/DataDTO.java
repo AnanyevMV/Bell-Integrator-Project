@@ -16,6 +16,7 @@ public class DataDTO {
 
     /**
      * Конструктор с параметром Object класса DataDTO
+     *
      * @param data любой объект, который будет обёрнут.
      */
     public DataDTO(Object data) {
@@ -24,6 +25,7 @@ public class DataDTO {
 
     /**
      * Геттер для поля data
+     *
      * @return любой объект, что был обёрнут
      */
     public Object getData() {
@@ -32,6 +34,7 @@ public class DataDTO {
 
     /**
      * Сеттер для поля data
+     *
      * @param data любой объект, предназначенный для обёртки
      */
     public void setData(Object data) {
@@ -40,6 +43,7 @@ public class DataDTO {
 
     /**
      * Переопределение метода toString()
+     *
      * @return строковое представление объекта DataDTO
      */
     @Override

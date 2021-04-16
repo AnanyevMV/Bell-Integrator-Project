@@ -10,6 +10,7 @@ public class BellIntegratorProjectApplication {
 
 	/**
 	 * Бин ModelMapper, который отвечает за маппинг между DTO и Entity
+	 *
 	 * @return объект класса ModelMapper
 	 */
 	@Bean
@@ -19,6 +20,11 @@ public class BellIntegratorProjectApplication {
 		return modelMapper;
 	}
 
+	/**
+	 * Главный метод приложения
+	 *
+	 * @param args массив аргументов
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(BellIntegratorProjectApplication.class, args);
 	}

@@ -17,6 +17,7 @@ import ru.bellintegrator.exception.UserException;
 public class RestExceptionHandler{
     /**
      * Метод обрабатывает те исключения, которые не были перехвачены другими обработчиками исключений
+     *
      * @param exception Общее исключение
      * @return ResponseEntity - объект, который отвечает за тело, заголовки и статус HTTP-запроса
      */
@@ -28,6 +29,7 @@ public class RestExceptionHandler{
 
     /**
      * Метод обрабатывает исключения, связанные с органнизациями
+     *
      * @param exc исключение, связанное с организациями
      * @return ResponseEntity - объект, который отвечает за тело, заголовки и статус HTTP-запроса
      */
@@ -39,6 +41,7 @@ public class RestExceptionHandler{
 
     /**
      * Метод обрабатывает исключения, связанные с офисами
+     *
      * @param exc исключение, связанное с офисами
      * @return ResponseEntity - объект, который отвечает за тело, заголовки и статус HTTP-запроса
      */
@@ -50,6 +53,7 @@ public class RestExceptionHandler{
 
     /**
      * Метод обрабатывает исключения, связанные с пользователями
+     *
      * @param exc исключение, связанное с пользователями
      * @return ResponseEntity - объект, который отвечает за тело, заголовки и статус HTTP-запроса
      */

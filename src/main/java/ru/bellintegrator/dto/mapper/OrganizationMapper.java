@@ -19,6 +19,7 @@ public class OrganizationMapper implements Mapper<Organization, OrganizationDTO>
 
     /**
      * Конструктор класса OrganizationMapper
+     *
      * @param modelMapper объект класса ModelMapper
      */
     @Autowired
@@ -40,6 +41,7 @@ public class OrganizationMapper implements Mapper<Organization, OrganizationDTO>
 
     /**
      * Маппинг из OrganizationDTO в Organization
+     *
      * @param dto объект OrganizationDTO
      * @return объект Organization
      */
@@ -50,6 +52,7 @@ public class OrganizationMapper implements Mapper<Organization, OrganizationDTO>
 
     /**
      * Маппинг из Organization в OrganizationDTO
+     *
      * @param entity объект Organization
      * @return объект OrganizationDTO
      */
@@ -60,6 +63,7 @@ public class OrganizationMapper implements Mapper<Organization, OrganizationDTO>
 
     /**
      * Маппинг из списка OrganizationDTO в список Organization
+     *
      * @param dtoList список OrganizationDTO
      * @return список Organization
      */
@@ -70,6 +74,7 @@ public class OrganizationMapper implements Mapper<Organization, OrganizationDTO>
 
     /**
      * Маппинг из списка Organization в список OrganizationDTO
+     *
      * @param entityList список Organization
      * @return список OrganizationDTO
      */

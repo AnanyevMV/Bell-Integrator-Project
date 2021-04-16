@@ -8,6 +8,7 @@ import java.util.Objects;
 
 /**
  * Интерфейс Mapper для маппинга между Entity и DTO
+ *
  * @param <E> Entity
  * @param <D> DTO
  */
@@ -15,6 +16,7 @@ public interface Mapper<E, D> {
 
     /**
      * Маппинг из DTO в Entity
+     *
      * @param dto DTO
      * @return Entity
      */
@@ -22,6 +24,7 @@ public interface Mapper<E, D> {
 
     /**
      * Маппинг из Entity в DTO
+     *
      * @param entity Entity
      * @return DTO
      */
@@ -29,6 +32,7 @@ public interface Mapper<E, D> {
 
     /**
      * Маппинг из списка DTO в список Entity
+     *
      * @param dtoList список DTO
      * @return список Entity
      */
@@ -36,6 +40,7 @@ public interface Mapper<E, D> {
 
     /**
      * Маппинг из списка Entity в список DTO
+     *
      * @param entityList список Entity
      * @return список DTO
      */
@@ -43,6 +48,7 @@ public interface Mapper<E, D> {
 
     /**
      * Конвертер из "true"/"false" в 1/0
+     *
      * @return из "true"/"false" в 1/0
      */
     public static Converter<String, Integer> booleanStrToIntegerConverter() {
@@ -64,6 +70,7 @@ public interface Mapper<E, D> {
 
     /**
      * Вспомогательный метод, который бросает ошибку, если строка не равна "true" или "false"
+     *
      * @param s входная строка на проверку
      */
     public static void throwExceptionIfNotTrueOrFalse(String s) {
@@ -77,6 +84,7 @@ public interface Mapper<E, D> {
 
     /**
      * Конвертер из 1/0 в "true"/"false"
+     *
      * @return из 1/0 в "true"/"false"
      */
     public static Converter<Integer, String> booleanIntegerToStrConverter() {

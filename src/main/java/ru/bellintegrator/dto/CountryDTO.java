@@ -22,6 +22,7 @@ public class CountryDTO {
 
     /**
      * Конструктор с параметрами класса CountryDTO
+     *
      * @param name название страны
      * @param code код страны
      */
@@ -32,6 +33,7 @@ public class CountryDTO {
 
     /**
      * Геттер для названия страны
+     *
      * @return название страны
      */
     public String getName() {
@@ -40,6 +42,7 @@ public class CountryDTO {
 
     /**
      * Сеттер для названия страны
+     *
      * @param name название страны
      */
     public void setName(String name) {
@@ -48,6 +51,7 @@ public class CountryDTO {
 
     /**
      * Геттер для кода страны
+     *
      * @return код страны
      */
     public String getCode() {
@@ -56,6 +60,7 @@ public class CountryDTO {
 
     /**
      * Сеттер для кода страны
+     *
      * @param code код страны
      */
     public void setCode(String code) {
