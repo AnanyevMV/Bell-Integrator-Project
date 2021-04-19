@@ -6,28 +6,46 @@ import ru.bellintegrator.exception.OrganizationException;
 import ru.bellintegrator.entity.Office;
 import ru.bellintegrator.entity.Organization;
 import ru.bellintegrator.exception.OfficeException;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Класс OfficeDAOImpl представляет собой DAO-класс для офисов
+ */
 @Repository
 public class  OfficeDAOImpl implements OfficeDAO {
 
     private final EntityManager entityManager;
 
+    /**
+     * Конструктор класса OfficeDAOImpl
+     *
+     * @param entityManager менеджер сущностей
+     */
     @Autowired
     public OfficeDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
+    /**
+     * Метод позволяет получить список всех офисов
+     *
+     * @return список Office
+     */
     @Override
     public List<Office> getOffices() {
         TypedQuery<Office> query = entityManager.createQuery("select o from Office o", Office.class);
         return query.getResultList();
     }
 
+    /**
+     * Метод позволяет получить офис по его идентификатору
+     *
+     * @param id идентификатор офиса
+     * @return объект Office
+     */
     @Override
     public Office getOffice(Long id) {
         if (Objects.isNull(id)) {
@@ -41,6 +59,12 @@ public class  OfficeDAOImpl implements OfficeDAO {
         return office;
     }
 
+    /**
+     * Метод позволяет обновить информацию об офисе
+     *
+     * @param office         объект Office
+     * @param organizationId идентификатор организации
+     */
     @Override
     public void updateOffice(Office office, Long organizationId) {
         // Получаем persisted объект офиса или ошибку
@@ -61,6 +85,12 @@ public class  OfficeDAOImpl implements OfficeDAO {
         if (Objects.nonNull(office.getIsActive())) { persistedOffice.setIsActive(office.getIsActive()); }
     }
 
+    /**
+     * Метод позволяет сохранить информацию об офисе
+     *
+     * @param office         объект Office
+     * @param organizationId идентификатор организации
+     */
     @Override
     public void saveOffice(Office office, Long organizationId) {
         if (Objects.isNull(organizationId)) {

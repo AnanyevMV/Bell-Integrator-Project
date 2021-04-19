@@ -11,29 +11,47 @@ import ru.bellintegrator.entity.DocumentType;
 import ru.bellintegrator.entity.Office;
 import ru.bellintegrator.entity.User;
 import ru.bellintegrator.exception.UserException;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Класс UserDAOImpl представляет собой DAO-класс для пользователей
+ */
 @Repository
 public class UserDAOImpl implements UserDAO {
 
     private final EntityManager entityManager;
 
+    /**
+     * Конструктор класса UserDAOImpl
+     *
+     * @param entityManager менеджер сущностей
+     */
     @Autowired
     public UserDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
+    /**
+     * Метод позволяет получить список всех пользователей
+     *
+     * @return список User
+     */
     @Override
     public List<User> getUsers() {
         TypedQuery<User> query = entityManager.createQuery("select u from User u", User.class);
         return query.getResultList();
     }
 
+    /**
+     * Метод позволяет получить пользователя по его идентификатору
+     *
+     * @param id идентификатор пользователя
+     * @return объект User
+     */
     @Override
     public User getUser(Long id) {
         if (Objects.isNull(id)) {
@@ -46,6 +64,12 @@ public class UserDAOImpl implements UserDAO {
         return user;
     }
 
+    /**
+     * Метод позволяет обновить информацию о пользователе
+     *
+     * @param user     объект User
+     * @param officeId идентификатор офиса
+     */
     @Override
     public void updateUser(User user, Long officeId) {
         // Получаем persisted объект пользователя или ошибку
@@ -59,7 +83,19 @@ public class UserDAOImpl implements UserDAO {
             }
             persistedUser.setOffice(office);
         }
+        // Обработка входных данных о пользователе
+        processUserFields(user, persistedUser);
+        // Обработка входных данных документа
+        processDocumentInput(persistedUser, user.getDocument());
+    }
 
+    /**
+     * Метод обрабатывает поля объекта User. Если поле не null, то оно обновляется в persisted-объекте User
+     *
+     * @param user объект User, полученный из UserDTO
+     * @param persistedUser persisted-объект User
+     */
+    private void processUserFields(User user, User persistedUser) {
         // Если где-то поле не указано (null), то пропускаем изменение, а не устанавливаем null
         if (Objects.nonNull(user.getFirstName())) { persistedUser.setFirstName(user.getFirstName()); }
         if (Objects.nonNull(user.getLastName())) { persistedUser.setLastName(user.getLastName()); }
@@ -72,10 +108,14 @@ public class UserDAOImpl implements UserDAO {
             throwExceptionIfCitizenshipCodeDoesNotExist(user.getCitizenshipCode());
             persistedUser.setCitizenshipCode(user.getCitizenshipCode());
         }
-        // Обработка входных данных документа
-        processDocumentInput(persistedUser, user.getDocument());
     }
 
+    /**
+     * Метод обрабатывает поля объекта Document и обновляет информацию в persisted-объекте User
+     *
+     * @param persistedUser persisted-объект User
+     * @param document объект Document
+     */
     private void processDocumentInput(User persistedUser, Document document) {
         // Если дата не null, то меняем дату документа
         if (Objects.nonNull(document.getDocDate())) {
@@ -98,8 +138,12 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
-
-
+    /**
+     * Метод позволяет сохранить информацию о пользователе
+     *
+     * @param user     объект User
+     * @param officeId идентификатор офиса
+     */
     @Override
     public void saveUser(User user, Long officeId) {
         throwExceptionIfCitizenshipCodeDoesNotExist(user.getCitizenshipCode());
@@ -125,6 +169,11 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
+    /**
+     * Метод бросает исключение, если не существует такого кода страны
+     *
+     * @param citizenshipCode код страны
+     */
     private void throwExceptionIfCitizenshipCodeDoesNotExist(String citizenshipCode) {
         if (Objects.isNull(citizenshipCode)) {
             throw new BadInputException("Не задан код страны");
@@ -139,6 +188,12 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
+    /**
+     * Метод бросает исключение, если не существует такого кода документа или если поле docNumber равно null
+     *
+     * @param docCode код документа
+     * @param docNumber номер документа
+     */
     private void throwExceptionIfDocCodeDoesNotExistAndCheckDocNumber(String docCode, String docNumber) {
         if (Objects.isNull(docNumber)) {
             throw new BadInputException("Номер документа не может быть null");
@@ -153,6 +208,12 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
+    /**
+     * Метод бросает исключение, если пара (код документа, номер документа) уже существует
+     *
+     * @param docCode код документа
+     * @param docNumber номер документа
+     */
     private void throwExceptionIfDocCodeAndDocNumberAlreadyExist(String docCode, String docNumber) {
         DocumentId documentId = new DocumentId(docCode, docNumber);
         Document document = entityManager.find(Document.class, documentId);

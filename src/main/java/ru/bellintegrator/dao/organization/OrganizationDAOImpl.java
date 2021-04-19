@@ -4,29 +4,47 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.bellintegrator.entity.Organization;
 import ru.bellintegrator.exception.OrganizationException;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Класс OrganizationDAOImpl представляет собой DAO-класс для организаций
+ */
 @Repository
 public class OrganizationDAOImpl implements OrganizationDAO {
 
     private final EntityManager entityManager;
 
+    /**
+     * Конструктор класса OrganizationDAOImpl
+     *
+     * @param entityManager менеджер сущностей
+     */
     @Autowired
     public OrganizationDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
+    /**
+     * Метод позволяет получить список всех организаций
+     *
+     * @return список Organization
+     */
     @Override
     public List<Organization> getOrganizations() {
         TypedQuery<Organization> query = entityManager.createQuery
-        ("select o from Organization o", Organization.class);
+                ("select o from Organization o", Organization.class);
         return query.getResultList();
     }
 
+    /**
+     * Метод позволяет получить организацию по её идентификатору
+     *
+     * @param id идентификатор организации
+     * @return объект Organization
+     */
     @Override
     public Organization getOrganization(Long id) {
         if (Objects.isNull(id)) {
@@ -39,6 +57,11 @@ public class OrganizationDAOImpl implements OrganizationDAO {
         return organization;
     }
 
+    /**
+     * Метод позволяет обновить информацию об организации
+     *
+     * @param organization объект Organization
+     */
     @Override
     public void updateOrganization(Organization organization) {
         // Получаем persisted объект организации или ошибку
@@ -54,7 +77,11 @@ public class OrganizationDAOImpl implements OrganizationDAO {
         if (Objects.nonNull(organization.getIsActive())) { persistedOrg.setIsActive(organization.getIsActive()); }
     }
 
-
+    /**
+     * Метод позволяет сохранить информацию об организации
+     *
+     * @param organization объект Organization
+     */
     @Override
     public void saveOrganization(Organization organization) {
         try {
