@@ -40,8 +40,24 @@ public class OfficeServiceImpl implements OfficeService {
      * @return список OfficeDTO
      */
     @Override
+    @Transactional
     public List<OfficeDTO> getOffices() {
-        return null;
+        List<Office> offices = officeDAO.getOffices();
+        return officeMapper.toDTOList(offices);
+    }
+
+    /**
+     * Метод позволяет получить список офисов согласно фильтру
+     *
+     * @param filter фильтр
+     * @return список OfficeDTO
+     */
+    @Override
+    @Transactional
+    public List<OfficeDTO> getOffices(OfficeDTO filter) {
+        Office officeFilter = officeMapper.toEntity(filter);
+        List<Office> offices = officeDAO.getOffices(officeFilter, filter.getOrgId());
+        return officeMapper.toDTOList(offices);
     }
 
     /**

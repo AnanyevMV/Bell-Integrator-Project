@@ -16,6 +16,15 @@ public interface OfficeDAO {
     public List<Office> getOffices();
 
     /**
+     * Метод позволяет получить список офисов по фильтру
+     *
+     * @param filter фильтр
+     * @param orgId идентификатор организации
+     * @return список Office
+     */
+    public List<Office> getOffices(Office filter, Long orgId);
+
+    /**
      * Метод позволяет получить офис по его идентификатору
      *
      * @param id идентификатор офиса

@@ -16,6 +16,14 @@ public interface UserService {
     public List<UserDTO> getUsers();
 
     /**
+     * Метод позволяет получить список пользователей согласно фильтру
+     *
+     * @param filter фильтр
+     * @return список UserDTO
+     */
+    public List<UserDTO> getUsers(UserDTO filter);
+
+    /**
      * Метод позволяет получить пользователя по его идентификатору
      *
      * @param id идентификатор пользователя

@@ -48,6 +48,17 @@ public class OfficeRestController {
     }
 
     /**
+     * Метод обрабатывает POST-запрос для получения списка офисов по фильтру
+     *
+     * @param filter фильтр
+     * @return список OfficeDTO
+     */
+    @PostMapping("/office/list")
+    public List<OfficeDTO> getOffices(@RequestBody OfficeDTO filter) {
+        return officeService.getOffices(filter);
+    }
+
+    /**
      * Метод обрабатывает GET-запрос для получения офиса по его идентификатору
      *
      * @param id идентификатор офиса

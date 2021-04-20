@@ -2,6 +2,7 @@ package ru.bellintegrator.dao.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.ReflectionUtils;
 import ru.bellintegrator.exception.OfficeException;
 import ru.bellintegrator.exception.BadInputException;
 import ru.bellintegrator.entity.Country;
@@ -13,7 +14,13 @@ import ru.bellintegrator.entity.User;
 import ru.bellintegrator.exception.UserException;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.lang.reflect.Field;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -42,8 +49,83 @@ public class UserDAOImpl implements UserDAO {
      */
     @Override
     public List<User> getUsers() {
-        TypedQuery<User> query = entityManager.createQuery("select u from User u", User.class);
+        TypedQuery<User> query = entityManager.createNamedQuery("User.getAll", User.class);
         return query.getResultList();
+    }
+
+    /**
+     * Метод позволяет получить список пользователей по фильтру
+     *
+     * @param filter фильтр
+     * @return список User
+     */
+    @Override
+    public List<User> getUsers(User filter) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
+        Root<User> root = criteriaQuery.from(User.class);
+        criteriaQuery.select(root);
+        List<Predicate> predicateList = getAllPredicates(filter, criteriaBuilder, root);
+        addDocumentPredicates(filter, criteriaBuilder, root, predicateList);
+        criteriaQuery.where(predicateList.toArray(new Predicate[0]));
+        return entityManager.createQuery(criteriaQuery).getResultList();
+    }
+
+    /**
+     * Метод позволяет получить список всех предикатов для CriteriaQuery
+     *
+     * @param filter фильтр
+     * @param criteriaBuilder объект CriteriaBuilder
+     * @param root корень
+     * @return список предикатов
+     */
+    private List<Predicate> getAllPredicates(User filter, CriteriaBuilder criteriaBuilder, Root<User> root) {
+        List<Predicate> predicateList = new ArrayList<>();
+        // Для каждого поля класса Organization происходит проверка на null
+        // Если поле не равно null, то добавляем предикат равенства в список
+        Field[] declaredFields = filter.getClass().getDeclaredFields();
+        for (Field declaredField : declaredFields) {
+            String fieldName = declaredField.getName();
+            if (fieldName.equals("version")) {
+                continue;
+            }
+            if (fieldName.equals("document")) {
+                continue;
+            }
+            declaredField.setAccessible(true);
+            Object fieldValue = ReflectionUtils.getField(declaredField, filter);
+            if (Objects.nonNull(fieldValue)) {
+                Predicate predicate = criteriaBuilder.equal(root.get(fieldName), fieldValue);
+                predicateList.add(predicate);
+            }
+        }
+        return predicateList;
+    }
+
+    /**
+     * Метод добавляем предикаты для документов
+     *
+     * @param filter фильтр
+     * @param criteriaBuilder объект CriteriaBuilder
+     * @param root корень
+     * @param predicateList список предикатов
+     */
+    private void addDocumentPredicates(User filter, CriteriaBuilder criteriaBuilder, Root<User> root, List<Predicate> predicateList) {
+        if (Objects.nonNull(filter.getDocument())) {
+            Document d = filter.getDocument();
+            if (Objects.nonNull(d.getDocCode())) {
+                Predicate predicate = criteriaBuilder.equal(root.get("document").get("docCode"), d.getDocCode());
+                predicateList.add(predicate);
+            }
+            if (Objects.nonNull(d.getDocNumber())) {
+                Predicate predicate = criteriaBuilder.equal(root.get("document").get("docNumber"), d.getDocNumber());
+                predicateList.add(predicate);
+            }
+            if (Objects.nonNull(d.getDocDate())) {
+                Predicate predicate = criteriaBuilder.equal(root.get("document").get("docDate"), d.getDocDate());
+                predicateList.add(predicate);
+            }
+        }
     }
 
     /**
@@ -165,7 +247,7 @@ public class UserDAOImpl implements UserDAO {
         try {
             entityManager.persist(user);
         } catch (Exception e) {
-            throw new UserException("Не удалось сохранить пользователя. Проверьте входные данные", e);
+            throw new UserException("Не удалось сохранить пользователя", e);
         }
     }
 
@@ -178,8 +260,8 @@ public class UserDAOImpl implements UserDAO {
         if (Objects.isNull(citizenshipCode)) {
             throw new BadInputException("Не задан код страны");
         }
-        TypedQuery<Country> query = entityManager.createQuery
-        ("select c from Country c where c.code = :citizenshipCode", Country.class);
+        TypedQuery<Country> query = entityManager.createNamedQuery
+        ("Country.checkCitizenshipCode", Country.class);
         query.setParameter("citizenshipCode", citizenshipCode);
         try {
             query.getSingleResult();

@@ -3,6 +3,7 @@ package ru.bellintegrator.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -10,6 +11,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "document_type")
+@NamedQuery(name = "DocumentType.getAll", query = "select d from DocumentType d")
 public class DocumentType {
     /**
      * Код документа

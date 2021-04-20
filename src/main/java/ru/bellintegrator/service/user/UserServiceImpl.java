@@ -7,6 +7,7 @@ import ru.bellintegrator.dao.user.UserDAO;
 import ru.bellintegrator.dto.UserDTO;
 import ru.bellintegrator.dto.mapper.UserMapper;
 import ru.bellintegrator.entity.Document;
+import ru.bellintegrator.entity.Organization;
 import ru.bellintegrator.entity.User;
 import ru.bellintegrator.exception.BadInputException;
 
@@ -42,6 +43,20 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public List<UserDTO> getUsers() {
         List<User> users = userDAO.getUsers();
+        return userMapper.toDTOList(users);
+    }
+
+    /**
+     * Метод позволяет получить список пользователей согласно фильтру
+     *
+     * @param filter фильтр
+     * @return список UserDTO
+     */
+    @Override
+    @Transactional
+    public List<UserDTO> getUsers(UserDTO filter) {
+        User userFilter = userMapper.toEntity(filter);
+        List<User> users = userDAO.getUsers(userFilter);
         return userMapper.toDTOList(users);
     }
 

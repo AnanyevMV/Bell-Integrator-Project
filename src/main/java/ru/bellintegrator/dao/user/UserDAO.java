@@ -16,6 +16,14 @@ public interface UserDAO {
     public List<User> getUsers();
 
     /**
+     * Метод позволяет получить список пользователей по фильтру
+     *
+     * @param filter фильтр
+     * @return список User
+     */
+    public List<User> getUsers(User filter);
+
+    /**
      * Метод позволяет получить пользователя по его идентификатору
      *
      * @param id идентификатор пользователя

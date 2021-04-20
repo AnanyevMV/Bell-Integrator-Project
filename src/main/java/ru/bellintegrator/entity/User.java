@@ -10,15 +10,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
+
 
 /**
  * Entity-класс пользователей
  */
 @Entity
 @Table(name = "user")
+@NamedQuery(name = "User.getAll", query = "select u from User u")
 public class User {
     /**
      * Идентификатор пользователя

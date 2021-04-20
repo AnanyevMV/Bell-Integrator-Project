@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import ru.bellintegrator.entity.Country;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class CountryDAOImpl implements CountryDAO {
      */
     @Override
     public List<Country> getCountries() {
-        TypedQuery<Country> query = entityManager.createQuery("select c from Country c", Country.class);
+        TypedQuery<Country> query = entityManager.createNamedQuery("Country.getAll", Country.class);
         return query.getResultList();
     }
 }

@@ -34,7 +34,7 @@ public class DocumentTypeDAOImpl implements DocumentTypeDAO {
     @Override
     public List<DocumentType> getDocumentTypes() {
         TypedQuery<DocumentType> query =
-                entityManager.createQuery("select d from DocumentType d", DocumentType.class);
+                entityManager.createNamedQuery("DocumentType.getAll", DocumentType.class);
         return query.getResultList();
     }
 }

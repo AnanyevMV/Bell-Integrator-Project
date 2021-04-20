@@ -3,6 +3,7 @@ package ru.bellintegrator.controller.organization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.bellintegrator.dto.OrganizationDTO;
+import ru.bellintegrator.entity.Organization;
 import ru.bellintegrator.service.organization.OrganizationService;
 
 import java.util.List;
@@ -39,6 +40,16 @@ public class OrganizationRestController {
     @GetMapping("/organization/list")
     public List<OrganizationDTO> getOrganizations() {
         return organizationService.getOrganizations();
+    }
+
+    /**
+     * Метод обрабатывает POST-запрос для получения списка организаций по фильтру
+     * @param filter фильтр
+     * @return список OrganizationDTO
+     */
+    @PostMapping("/organization/list")
+    public List<OrganizationDTO> getOrganizations(@RequestBody OrganizationDTO filter) {
+        return organizationService.getOrganizations(filter);
     }
 
     /**

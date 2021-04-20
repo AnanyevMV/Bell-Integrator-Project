@@ -12,6 +12,7 @@ import ru.bellintegrator.entity.User;
 import javax.annotation.PostConstruct;
 import java.sql.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -43,13 +44,17 @@ public class UserMapper implements Mapper<User, UserDTO> {
         modelMapper.typeMap(UserDTO.class, User.class).addMappings(new PropertyMap<UserDTO, User>() {
             @Override
             protected void configure() {
-                this.using((MappingContext<UserDTO, Document> mappingContext) ->
-                new Document(mappingContext.getSource().getDocCode(),
-                mappingContext.getSource().getDocNumber(), Date.valueOf
-                (mappingContext.getSource().getDocDate()))).map(source, destination.getDocument());
+                this.using((MappingContext<UserDTO, Document> mappingContext) -> {
+                    Date docDate = null;
+                    if (Objects.nonNull( mappingContext.getSource().getDocDate())) {
+                        docDate = Date.valueOf(mappingContext.getSource().getDocDate());
+                    }
+                    return new Document(mappingContext.getSource().getDocCode(),
+                            mappingContext.getSource().getDocNumber(), docDate);
+                }).map(source, destination.getDocument());
+
             }
         });
-
         modelMapper.typeMap(User.class, UserDTO.class).addMappings(mapper ->{
             mapper.using(Mapper.booleanIntegerToStrConverter()).map(User::getIsIdentified, UserDTO::setIsIdentified);
             mapper.map(m->m.getOffice().getId(), UserDTO::setOfficeId);

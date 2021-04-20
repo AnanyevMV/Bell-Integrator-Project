@@ -47,6 +47,20 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     /**
+     * Метод позволяет получить список организаций согласно фильтру
+     *
+     * @param filter фильтр
+     * @return список OrganizationDTO
+     */
+    @Override
+    @Transactional
+    public List<OrganizationDTO> getOrganizations(OrganizationDTO filter) {
+        Organization orgFilter = organizationMapper.toEntity(filter);
+        List<Organization> organizations = organizationDAO.getOrganizations(orgFilter);
+        return organizationMapper.toDTOList(organizations);
+    }
+
+    /**
      * Метод позволяет получить информацию об организации по её идентификатору
      *
      * @param id идентификтор организации

@@ -1,6 +1,8 @@
 package ru.bellintegrator.service.office;
 
 import ru.bellintegrator.dto.OfficeDTO;
+import ru.bellintegrator.dto.OrganizationDTO;
+
 import java.util.List;
 
 /**
@@ -14,6 +16,14 @@ public interface OfficeService {
      * @return список OfficeDTO
      */
     public List<OfficeDTO> getOffices();
+
+    /**
+     * Метод позволяет получить список офисов согласно фильтру
+     *
+     * @param filter фильтр
+     * @return список OfficeDTO
+     */
+    public List<OfficeDTO> getOffices(OfficeDTO filter);
 
     /**
      * Метод позволяет получить информацию об офисе по его идентификатору
@@ -36,4 +46,5 @@ public interface OfficeService {
      * @param officeDTO объект OfficeDTO
      */
     public void saveOffice(OfficeDTO officeDTO);
+
 }

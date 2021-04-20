@@ -2,12 +2,19 @@ package ru.bellintegrator.dao.office;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.ReflectionUtils;
 import ru.bellintegrator.exception.OrganizationException;
 import ru.bellintegrator.entity.Office;
 import ru.bellintegrator.entity.Organization;
 import ru.bellintegrator.exception.OfficeException;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -36,8 +43,59 @@ public class  OfficeDAOImpl implements OfficeDAO {
      */
     @Override
     public List<Office> getOffices() {
-        TypedQuery<Office> query = entityManager.createQuery("select o from Office o", Office.class);
+        TypedQuery<Office> query = entityManager.createNamedQuery("Office.getAll", Office.class);
         return query.getResultList();
+    }
+
+    /**
+     * Метод позволяет получить список офисов по фильтру
+     *
+     * @param filter фильтр
+     * @param orgId идентификатор организации
+     * @return список Office
+     */
+    @Override
+    public List<Office> getOffices(Office filter, Long orgId) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Office> criteriaQuery = criteriaBuilder.createQuery(Office.class);
+        Root<Office> root = criteriaQuery.from(Office.class);
+        criteriaQuery.select(root);
+        List<Predicate> predicateList = getAllPredicates(filter, criteriaBuilder, root);
+        if (Objects.nonNull(orgId)) {
+            Predicate predicate = criteriaBuilder.equal(root.get("organization").get("id"), orgId);
+            predicateList.add(predicate);
+        }
+        criteriaQuery.where(predicateList.toArray(new Predicate[0]));
+        return entityManager.createQuery(criteriaQuery).getResultList();
+    }
+
+    /**
+     * Метод позволяет получить список всех предикатов для CriteriaQuery
+     *
+     * @param filter фильтр
+     * @param criteriaBuilder объект CriteriaBuilder
+     * @param root корень
+     * @return список предикатов
+     */
+    private List<Predicate> getAllPredicates(Office filter, CriteriaBuilder criteriaBuilder, Root<Office> root) {
+        List<Predicate> predicateList = new ArrayList<>();
+
+        // Для каждого поля класса Office происходит проверка на null
+        // Если поле не равно null, то добавляем предикат равенства в список
+        Field[] declaredFields = filter.getClass().getDeclaredFields();
+        for (Field declaredField : declaredFields) {
+            String fieldName = declaredField.getName();
+            if (fieldName.equals("version")) {
+                continue;
+            }
+            declaredField.setAccessible(true);
+            Object fieldValue = ReflectionUtils.getField(declaredField, filter);
+            if (Objects.nonNull(fieldValue)) {
+                Predicate predicate = criteriaBuilder.equal(root.get(fieldName), fieldValue);
+                predicateList.add(predicate);
+            }
+        }
+        return predicateList;
     }
 
     /**

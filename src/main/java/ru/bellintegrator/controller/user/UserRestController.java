@@ -28,6 +28,7 @@ public class UserRestController {
     /**
      * Конструктор класса UserRestController. Используется внедрение зависимости userService<br>
      * через конструктор
+     *
      * @param userService - сервис для получения, сохранения, обновления пользователей.
      */
     public UserRestController(UserService userService) {
@@ -36,6 +37,7 @@ public class UserRestController {
 
     /**
      * Метод обрабатывает GET-запрос для получения списка всех пользователей.
+     *
      * @return список UserDTO
      */
     @GetMapping("/user/list")
@@ -44,7 +46,19 @@ public class UserRestController {
     }
 
     /**
+     * Метод обрабатывает POST-запрос для получения списка пользователей по фильтру
+     *
+     * @param filter фильтр
+     * @return список UserDTO
+     */
+    @PostMapping("/user/list")
+    public List<UserDTO> getUsers(@RequestBody UserDTO filter) {
+        return userService.getUsers(filter);
+    }
+
+    /**
      * Метод обрабатывает GET-запрос для получения пользователя по его идентификатору
+     *
      * @param id идентификатор пользователя
      * @return UserDTO
      */
@@ -55,6 +69,7 @@ public class UserRestController {
 
     /**
      * Метод обрабатывает POST-запрос для сохранения пользователя
+     *
      * @param userDTO DTO-объект, полученный из тела HTTP-запроса
      */
     @PostMapping("/user/save")
@@ -64,6 +79,7 @@ public class UserRestController {
 
     /**
      * Метод обрабатывает PUT-запрос для обновления пользователя
+     *
      * @param userDTO DTO-объект, полученный из тела HTTP-запроса
      */
     @PutMapping("/user/update")

@@ -16,6 +16,14 @@ public interface OrganizationService {
     public List<OrganizationDTO> getOrganizations();
 
     /**
+     * Метод позволяет получить список организаций согласно фильтру
+     *
+     * @param filter фильтр
+     * @return список OrganizationDTO
+     */
+    public List<OrganizationDTO> getOrganizations(OrganizationDTO filter);
+
+    /**
      * Метод позволяет получить информацию об организации по её идентификатору
      * @param id идентификтор организации
      * @return объект OrganizationDTO

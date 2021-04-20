@@ -15,6 +15,14 @@ public interface OrganizationDAO {
     public List<Organization> getOrganizations();
 
     /**
+     * Метод позволяет получить список организаций по фильтру
+     *
+     * @param filter фильтр
+     * @return список Organization
+     */
+    public List<Organization> getOrganizations(Organization filter);
+
+    /**
      * Метод позволяет получить организацию по её идентификатору
      *
      * @param id идентификатор организации

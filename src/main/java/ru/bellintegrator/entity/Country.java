@@ -3,6 +3,8 @@ package ru.bellintegrator.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -10,6 +12,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "country")
+@NamedQueries(value = {
+    @NamedQuery(name = "Country.getAll", query = "select c from Country c"),
+    @NamedQuery(name = "Country.checkCitizenshipCode", query = "select c from Country c where c.code = :citizenshipCode")
+})
+
 public class Country {
     /**
      * Код страны
