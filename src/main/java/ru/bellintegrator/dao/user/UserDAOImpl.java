@@ -89,6 +89,7 @@ public class UserDAOImpl implements UserDAO {
             if (fieldName.equals("version")) {
                 continue;
             }
+            // поля документа будут обрабатываться в другом методе
             if (fieldName.equals("document")) {
                 continue;
             }
@@ -247,7 +248,7 @@ public class UserDAOImpl implements UserDAO {
         try {
             entityManager.persist(user);
         } catch (Exception e) {
-            throw new UserException("Не удалось сохранить пользователя", e);
+            throw new UserException("Не удалось сохранить пользователя. Проверьте уникальность данных", e);
         }
     }
 
