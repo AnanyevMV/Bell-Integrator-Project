@@ -86,4 +86,5 @@ public class UserRestController {
     public void updateUser(@RequestBody UserDTO userDTO) {
         userService.updateUser(userDTO);
     }
+    
 }
