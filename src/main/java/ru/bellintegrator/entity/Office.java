@@ -16,7 +16,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "office")
-@NamedQuery(name = "Office.getAll", query = "select o from Office o")
+@NamedQuery(name = "Office.getAll", query = "select o from Office o join fetch o.organization")
 public class Office {
     /**
      * Идентификатор организации

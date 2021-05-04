@@ -22,7 +22,7 @@ import javax.persistence.Version;
  */
 @Entity
 @Table(name = "user")
-@NamedQuery(name = "User.getAll", query = "select u from User u")
+@NamedQuery(name = "User.getAll", query = "select u from User u join fetch u.office")
 public class User {
     /**
      * Идентификатор пользователя
