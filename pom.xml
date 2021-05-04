@@ -11,6 +11,7 @@
 	<groupId>ru.bellintegrator</groupId>
 	<artifactId>bell-integrator-project</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>bell-integrator-project</name>
 	<description>Project for Bell Integrator</description>
 
@@ -62,6 +63,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
